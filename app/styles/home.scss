@@ -1,0 +1,39 @@
+.home-greeting {
+  h1 {
+    font-size: 36px;
+    line-height: 48px;
+    margin-bottom: 24px;
+    text-shadow: none;
+  }
+  p {
+    font-size: 24px;
+    line-height: 36px;
+    text-shadow: none;
+  }
+}
+
+form {
+  .cautionary {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.home-footer {
+  bottom: 30px;
+  font-size: 12px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+
+  ul {
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    display: inline-block;
+    li {
+      display: inline;
+      padding-left: 20px;
+    }
+  }
+}
