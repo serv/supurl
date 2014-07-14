@@ -23,11 +23,12 @@ define([
 
         initialize: function () {
             // this.listenTo(this.model, 'change', this.render);
+            debugger;
             this.render();
         },
 
         render: function () {
-            this.$el.html(this.template($('about').html()));
+            this.$el.html(this.template());
         }
     });
 

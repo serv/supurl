@@ -17,9 +17,7 @@ define([
         },
 
         about: function() {
-          console.log('hi');
           new AboutView();
-
         }
 
     });

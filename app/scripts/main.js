@@ -16,17 +16,26 @@ require.config({
 
         pageRouter: 'routes/page',
         aboutView: 'views/about',
-        
+
+        linkRouter: 'routes/link',
+        linkModel: 'models/link',
+        newLinkView: 'views/link_new'
+
+
     }
 });
 
 require([
     'backbone',
     'bootstrap',
-    'pageRouter'
+    'pageRouter',
+    'linkRouter'
 ], function (Backbone,
              Bootstrap,
-             PageRouter) {
-    var router = new PageRouter();
+             PageRouter,
+             LinkRouter) {
+
+    var pageRouter = new PageRouter();
+    var linkRouter = new LinkRouter();
     Backbone.history.start();
 });
