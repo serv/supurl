@@ -1,22 +1,22 @@
 /*global define*/
 
 define([
-    'jquery',
-    'backbone',
-    'newLinkView'
+  'jquery',
+  'backbone',
+  'newLinkView'
 ], function ($, Backbone, NewLinkView) {
-    'use strict';
+  'use strict';
 
-    var LinkRouter = Backbone.Router.extend({
-        routes: {
-          'link/new': 'newLink'
-        },
+  var LinkRouter = Backbone.Router.extend({
+    routes: {
+      'link/new': 'newLink'
+    },
 
-        newLink: function() {
-          var newLinkView = new NewLinkView();
-        }
+    newLink: function() {
+      var newLinkView = new NewLinkView();
+    }
 
-    });
+  });
 
-    return LinkRouter;
+  return LinkRouter;
 });

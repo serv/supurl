@@ -1,39 +1,39 @@
 /*global define*/
 
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'templates',
-    'linkModel'
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates',
+  'linkModel'
 ], function ($, _, Backbone, JST, Link) {
-    'use strict';
+  'use strict';
 
-    var LinksNewView = Backbone.View.extend({
-        template: JST['app/scripts/templates/link_new.ejs'],
+  var LinksNewView = Backbone.View.extend({
+    template: JST['app/scripts/templates/link_new.ejs'],
 
-        tagName: 'div',
+    tagName: 'div',
 
-        id: '',
+    id: '',
 
-        className: '',
+    className: '',
 
-        el: '#main',
+    el: '#main',
 
-        events: {},
+    events: {},
 
-        initialize: function () {
-            this.model = new Link();
-            this.model.url = 'google.com';
-            this.listenTo(this.model, 'change', this.render);
-            this.render();
-        },
+    initialize: function () {
+      this.model = new Link();
+      this.model.url = 'google.com';
+      this.listenTo(this.model, 'change', this.render);
+      this.render();
+    },
 
-        render: function () {
-            // this.$el.html(this.template(this.model.toJSON()));
-            this.$el.html(this.template(this.model));
-        }
-    });
+    render: function () {
+      // this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model));
+    }
+  });
 
-    return LinksNewView;
+  return LinksNewView;
 });

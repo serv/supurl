@@ -1,32 +1,32 @@
 /*global define*/
 
 define([
-    'underscore',
-    'backbone'
+  'underscore',
+  'backbone'
 ], function (_, Backbone) {
-    'use strict';
+  'use strict';
 
-    var LinkModel = Backbone.Model.extend({
-        url: '',
+  var LinkModel = Backbone.Model.extend({
+    url: '',
 
-        initialize: function() {
-        },
+    initialize: function() {
+    },
 
-        defaults: {
-          url: '',
-          tags: '',
-          title: '',
-          suggestedTags: '',
-          comment: ''
-        },
+    defaults: {
+      url: '',
+      tags: '',
+      title: '',
+      suggestedTags: '',
+      comment: ''
+    },
 
-        validate: function(attrs, options) {
-        },
+    validate: function(attrs, options) {
+    },
 
-        parse: function(response, options)  {
-            return response;
-        }
-    });
+    parse: function(response, options)  {
+      return response;
+    }
+  });
 
-    return LinkModel;
+  return LinkModel;
 });

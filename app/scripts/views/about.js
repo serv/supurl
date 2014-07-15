@@ -1,36 +1,36 @@
 /*global define*/
 
 define([
-    'jquery',
-    'underscore',
-    'backbone',
-    'templates'
+  'jquery',
+  'underscore',
+  'backbone',
+  'templates'
 ], function ($, _, Backbone, JST) {
-    'use strict';
+  'use strict';
 
-    var AboutView = Backbone.View.extend({
-        template: JST['app/scripts/templates/about.ejs'],
+  var AboutView = Backbone.View.extend({
+    template: JST['app/scripts/templates/about.ejs'],
 
-        tagName: 'div',
+    tagName: 'div',
 
-        id: '',
+    id: '',
 
-        className: '',
+    className: '',
 
-        el: '#main',
+    el: '#main',
 
-        events: {},
+    events: {},
 
-        initialize: function () {
-            // this.listenTo(this.model, 'change', this.render);
-            debugger;
-            this.render();
-        },
+    initialize: function () {
+      // this.listenTo(this.model, 'change', this.render);
+      debugger;
+      this.render();
+    },
 
-        render: function () {
-            this.$el.html(this.template());
-        }
-    });
+    render: function () {
+      this.$el.html(this.template());
+    }
+  });
 
-    return AboutView;
+  return AboutView;
 });
