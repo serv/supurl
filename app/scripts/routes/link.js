@@ -3,17 +3,23 @@
 define([
   'jquery',
   'backbone',
-  'newLinkView'
-], function ($, Backbone, NewLinkView) {
+  'newLinkView',
+  'showLinkView'
+], function ($, Backbone, NewLinkView, ShowLinkView) {
   'use strict';
 
   var LinkRouter = Backbone.Router.extend({
     routes: {
-      'link/new': 'newLink'
+      'link/new': 'newLink',
+      'link/:id': 'showLink'
     },
 
     newLink: function() {
       var newLinkView = new NewLinkView();
+    },
+
+    showLink: function(id) {
+      var showLinkView = new ShowLinkView({'id': id});
     }
 
   });

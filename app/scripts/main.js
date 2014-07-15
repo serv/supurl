@@ -19,7 +19,9 @@ require.config({
 
     linkRouter: 'routes/link',
     linkModel: 'models/link',
-    newLinkView: 'views/link_new'
+    newLinkView: 'views/link_new',
+    showLinkView: 'views/link_show'
+
   }
 });
 
