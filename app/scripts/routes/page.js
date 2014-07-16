@@ -3,11 +3,11 @@
 define([
   'jquery',
   'backbone',
-  'aboutView',
+  'pageAboutView',
   'pageRootView'
 ], function ($,
              Backbone,
-             AboutView,
+             PageAboutView,
              PageRootView) {
   'use strict';
 
@@ -22,7 +22,7 @@ define([
     },
 
     about: function() {
-      new AboutView();
+      new PageAboutView();
     }
 
   });

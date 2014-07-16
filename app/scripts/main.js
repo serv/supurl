@@ -15,7 +15,7 @@ require.config({
     bootstrap:        '../bower_components/sass-bootstrap/dist/js/bootstrap',
 
     pageRouter:       'routes/page',
-    aboutView:        'views/about',
+    pageAboutView:    'views/page_about',
     pageRootView:     'views/page_root',
 
     linkRouter:       'routes/link',

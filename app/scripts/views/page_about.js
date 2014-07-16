@@ -8,8 +8,8 @@ define([
 ], function ($, _, Backbone, JST) {
   'use strict';
 
-  var AboutView = Backbone.View.extend({
-    template: JST['app/scripts/templates/about.ejs'],
+  var PageAboutView = Backbone.View.extend({
+    template: JST['app/scripts/templates/page_about.ejs'],
 
     tagName: 'div',
 
@@ -31,5 +31,5 @@ define([
     }
   });
 
-  return AboutView;
+  return PageAboutView;
 });
