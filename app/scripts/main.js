@@ -9,18 +9,19 @@ require.config({
     }
   },
   paths: {
-    jquery: '../bower_components/jquery/dist/jquery',
-    backbone: '../bower_components/backbone/backbone',
-    underscore: '../bower_components/lodash/dist/lodash',
-    bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
+    jquery:           '../bower_components/jquery/dist/jquery',
+    backbone:         '../bower_components/backbone/backbone',
+    underscore:       '../bower_components/lodash/dist/lodash',
+    bootstrap:        '../bower_components/sass-bootstrap/dist/js/bootstrap',
 
-    pageRouter: 'routes/page',
-    aboutView: 'views/about',
+    pageRouter:       'routes/page',
+    aboutView:        'views/about',
+    pageRootView:     'views/page_root',
 
-    linkRouter: 'routes/link',
-    linkModel: 'models/link',
-    newLinkView: 'views/link_new',
-    showLinkView: 'views/link_show'
+    linkRouter:       'routes/link',
+    linkModel:        'models/link',
+    newLinkView:      'views/link_new',
+    showLinkView:     'views/link_show'
 
   }
 });

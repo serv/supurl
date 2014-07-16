@@ -3,8 +3,12 @@
 define([
   'jquery',
   'backbone',
-  'aboutView'
-], function ($, Backbone, AboutView) {
+  'aboutView',
+  'pageRootView'
+], function ($,
+             Backbone,
+             AboutView,
+             PageRootView) {
   'use strict';
 
   var PageRouter = Backbone.Router.extend({
@@ -14,6 +18,7 @@ define([
     },
 
     root: function() {
+      new PageRootView();
     },
 
     about: function() {
