@@ -16,7 +16,7 @@ define([
       url: '',
       tags: '',
       title: '',
-      suggestedTags: '',
+      suggestedTags: [],
       comment: ''
     },
 
