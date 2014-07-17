@@ -20,11 +20,12 @@ define([
 
     el: '#main',
 
-    events: {},
+    events: {
+      'submit form': 'onSubmit'
+    },
 
     initialize: function () {
       this.model = new Link();
-      this.model.url = 'google.com';
       this.listenTo(this.model, 'change', this.render);
       this.render();
     },
@@ -32,6 +33,23 @@ define([
     render: function () {
       // this.$el.html(this.template(this.model.toJSON()));
       this.$el.html(this.template(this.model));
+    },
+
+    onSubmit: function(e) {
+      e.preventDefault();
+
+      debugger;
+      this.model.save({
+        title:         this.$el.find('#input-title').val(),
+        href:          this.$el.find('#input-href').val(),
+        tags:          this.$el.find('#input-tags').val(),
+        suggestedTags: this.$el.find('#input-suggested-tags').val(),
+        comments:      this.$el.find('#input-comments').val()
+      });
+
+      console.log('this model', this.model)
+
+      Backbone.history.navigate('#', true);
     }
   });
 

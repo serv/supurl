@@ -7,13 +7,15 @@ define([
   'use strict';
 
   var LinkModel = Backbone.Model.extend({
-    url: '',
+
+    //TODO: fix this api url when we have API
+    url: 'http://google.com/link',
 
     initialize: function() {
     },
 
     defaults: {
-      url: '',
+      href: '',
       tags: '',
       title: '',
       suggestedTags: '',
