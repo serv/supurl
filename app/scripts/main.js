@@ -9,14 +9,10 @@ require.config({
     }
   },
   paths: {
-    jquery:     '../bower_components/jquery/dist/jquery',
-    backbone:   '../bower_components/backbone/backbone',
-    underscore: '../bower_components/lodash/dist/lodash',
-    bootstrap:  '../bower_components/sass-bootstrap/dist/js/bootstrap',
-
-    backboneForms:           '../bower_components/backbone-forms/distribution/backbone-forms',
-    backboneFormsBootstrap:  '../bower_components/backbone-forms/distribution/templates/bootstrap3',
-    // backbone-bootstrap-modal: '../bower_components/backbone.bootstrap-modal/src/backbone.bootstrap-modal',
+    jquery:           '../bower_components/jquery/dist/jquery',
+    backbone:         '../bower_components/backbone/backbone',
+    underscore:       '../bower_components/lodash/dist/lodash',
+    bootstrap:        '../bower_components/sass-bootstrap/dist/js/bootstrap',
 
     pageRouter:       'routes/page',
     pageAboutView:    'views/page_about',
@@ -24,7 +20,6 @@ require.config({
 
     linkRouter:       'routes/link',
     linkModel:        'models/link',
-    linkForm:         'forms/link_form',
     newLinkView:      'views/link_new',
     showLinkView:     'views/link_show'
 

@@ -10,6 +10,6 @@
 6. Run `bower install`
 7. Run `npm install`
 
-## 3rd party Backbone models
+## backend
 
-- [backbone-forms](https://github.com/powmedia/backbone-forms)
+## front end
