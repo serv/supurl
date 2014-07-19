@@ -44,10 +44,8 @@ define([
         href:          this.$el.find('#input-href').val(),
         tags:          this.$el.find('#input-tags').val(),
         suggestedTags: this.$el.find('#input-suggested-tags').val(),
-        comments:      this.$el.find('#input-comments').val()
+        comment:       this.$el.find('#input-comment').val()
       });
-
-      console.log('this model', this.model)
 
       Backbone.history.navigate('#', true);
     }
