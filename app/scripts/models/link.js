@@ -26,7 +26,6 @@ define([
     },
 
     parse: function(response, options)  {
-      // this.set(response);
       return response;
     }
   });
