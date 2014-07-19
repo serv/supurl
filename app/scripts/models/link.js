@@ -9,7 +9,7 @@ define([
   var LinkModel = Backbone.Model.extend({
 
     //TODO: fix this api url when we have API
-    url: 'http://google.com/link',
+    urlRoot: 'http://localhost:3000/api/v0/links',
 
     initialize: function() {
     },
@@ -26,6 +26,7 @@ define([
     },
 
     parse: function(response, options)  {
+      // this.set(response);
       return response;
     }
   });

@@ -22,22 +22,11 @@ define([
 
     events: {},
 
-    initialize: function (attr) {
-      console.log(attr);
+    url: 'http://localhost:3000/api/v0/links',
 
-      var modelAttr,
-          model;
-      modelAttr = {
-        id: attr['id'],
-        url: 'www.daum.net'
-      };
-
-      model = new Link();
-      model.set(modelAttr);
-      this.model = model;
-
-      console.log('this model', this.model.get('url'));
-      console.log('this template', this.template());
+    initialize: function (id) {
+      this.model = new Link({id: 1});
+      this.model.fetch();
       this.listenTo(this.model, 'change', this.render);
       this.render();
     },

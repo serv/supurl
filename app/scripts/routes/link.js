@@ -10,8 +10,8 @@ define([
 
   var LinkRouter = Backbone.Router.extend({
     routes: {
-      'link/new': 'newLink',
-      'link/:id': 'showLink'
+      'links/new': 'newLink',
+      'links/:id': 'showLink'
     },
 
     newLink: function() {
