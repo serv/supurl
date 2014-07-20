@@ -21,7 +21,9 @@ require.config({
     linkRouter:       'routes/link',
     linkModel:        'models/link',
     newLinkView:      'views/link_new',
-    showLinkView:     'views/link_show'
+    showLinkView:     'views/link_show',
+    links:            'collections/links',
+    linksView:        'views/links'
 
   }
 });

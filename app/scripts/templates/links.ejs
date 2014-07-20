@@ -1,0 +1,12 @@
+<h1>Links</h1>
+<p>Here are links.</p>
+<% _.each(this.collection.models, function(link){ %>
+<p>
+  <h2><%= link.get('id') %></h2>
+  <ul>
+    <li><%= link.get('title') %></li>
+    <li><%= link.get('href') %></li>
+    <li><%= link.get('comment') %></li>
+  </ul>
+</p>
+<% }); %>
