@@ -38,7 +38,6 @@ define([
     onSubmit: function(e) {
       e.preventDefault();
 
-      debugger;
       this.model.save({
         title:         this.$el.find('#input-title').val(),
         href:          this.$el.find('#input-href').val(),
