@@ -25,7 +25,7 @@ define([
     url: 'http://localhost:3000/api/v0/links',
 
     initialize: function (id) {
-      this.model = new Link({id: 1});
+      this.model = new Link(id);
       this.model.fetch();
       this.listenTo(this.model, 'change', this.render);
       this.render();
