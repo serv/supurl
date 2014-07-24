@@ -8,8 +8,7 @@ define([
 
   var LinkModel = Backbone.Model.extend({
 
-    //TODO: fix this api url when we have API
-    urlRoot: 'http://localhost:3000/api/v0/links',
+    url: 'http://localhost:3000/api/v0/links',
 
     initialize: function() {
     },

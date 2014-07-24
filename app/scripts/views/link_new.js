@@ -38,6 +38,7 @@ define([
     onSubmit: function(e) {
       e.preventDefault();
 
+      this.model = new Link();
       this.model.save({
         title:         this.$el.find('#input-title').val(),
         href:          this.$el.find('#input-href').val(),
