@@ -7,6 +7,7 @@
     <li><%= link.get('title') %></li>
     <li><%= link.get('href') %></li>
     <li><%= link.get('comment') %></li>
+    <li><a href='#/links/<%= link.get('id') %>' data-id='<%= link.get('id') %>' data-method='delete' class='e-delete-link'>Delete</a></li>
   </ul>
 </p>
 <% }); %>

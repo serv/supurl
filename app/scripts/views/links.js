@@ -22,7 +22,9 @@ define([
 
     url: 'http://localhost:3000/api/v0/links',
 
-    events: {},
+    events: {
+      'click .e-delete-link': 'onDelete'
+    },
 
     initialize: function () {
       this.collection = new LinksCollection();
@@ -32,6 +34,19 @@ define([
 
     render: function () {
       this.$el.html(this.template(this.collection.toJSON()));
+    },
+
+    onDelete: function (e) {
+      e.preventDefault();
+      var id = $(e.currentTarget).data("id"),
+          self = this,
+          link = _.find(self.collection.models, function(l){
+            return l.get('id') == id;
+          });
+
+      link.url = "http://localhost:3000/api/v0/links/" + id;
+
+      link.destroy();
     }
   });
 
