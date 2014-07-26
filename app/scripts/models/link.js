@@ -14,6 +14,7 @@ define([
     },
 
     defaults: {
+      id: null,
       href: '',
       tags: '',
       title: '',
