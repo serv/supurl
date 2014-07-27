@@ -1,6 +1,6 @@
 <h1>New Link</h1>
 
-<form role="form">
+<form role="form" onsubmit="newLink.disabled = true; return true;">
   <div class="form-group">
     <input type="text" class="form-control" id="input-title" placeholder="Title">
   </div>
@@ -17,5 +17,5 @@
     <textarea type="text" rows="5" class="form-control" id="input-comment" placeholder="Comments"></textarea>
   </div>
 
-  <button type="submit" class="btn btn-default">Save</button>
+  <button type="submit" name="newLink" class="btn btn-default">Save</button>
 </form>

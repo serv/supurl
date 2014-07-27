@@ -38,6 +38,7 @@ define([
 
     onDelete: function (e) {
       e.preventDefault();
+      
       var id = $(e.currentTarget).data("id"),
           self = this,
           link = _.find(self.collection.models, function(l){
