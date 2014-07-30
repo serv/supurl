@@ -16,6 +16,8 @@ require.config({
 
     pageRouter:       'routes/page',
     pageAboutView:    'views/page_about',
+    pageHelpView:     'views/page_help',
+    pageSettingsView: 'views/page_settings',
     pageRootView:     'views/page_root',
 
     linkRouter:       'routes/link',
