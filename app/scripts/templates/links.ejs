@@ -1,13 +1,36 @@
 <h1>Links</h1>
 <p>Here are links.</p>
-<% _.each(this.collection.models, function(link){ %>
-<p>
-  <h2><%= link.get('id') %></h2>
-  <ul>
-    <li><%= link.get('title') %></li>
-    <li><%= link.get('href') %></li>
-    <li><%= link.get('comment') %></li>
-    <li><a href='#/links/<%= link.get('id') %>' data-id='<%= link.get('id') %>' data-method='delete' class='e-delete-link'>Delete</a></li>
-  </ul>
-</p>
-<% }); %>
+
+<div class='row links'>
+  <div class='col-xs-12 col-md-12'>
+
+    <% _.each(this.collection.models, function(link) { %>
+      <div class='link'>
+        <div class='row upper-link'>
+          <div class='col-xs-12 col-md-12'>
+            <a href="<%= link.get('href') %>"><%= link.get('title') %></a>
+            <% if (link.get('comment').length > 0) { %>
+              <p>>> <%= link.get('comment') %></p>
+            <% } %>
+          </div>
+        </div>
+
+        <div class='row lower-link'>
+          <div class='col-xs-12 col-md-8 lower-left-link'>
+            <% _.each(link.get('tags'), function(tag) { %>
+              <a class='tag' href='#/tags/<%= tag.get('shortcut') %>'><%= tag.get('displayName') %></a>
+            <% }); %>
+          </div>
+          <div class='col-xs-6 col-md-2 lower-right1-link'>
+            <a href='#/links/<%= link.get('id') %>/edit'>Edit</a>
+            <a href='#/links/<%= link.get('id') %>' data-id='<%= link.get('id') %>' data-method='delete' class='e-delete-link'>Delete</a>
+          </div>
+          <div class='col-xs-6 col-md-2 lower-right2-link'>
+            << time >>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+
+  </div>
+</div>
