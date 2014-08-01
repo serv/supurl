@@ -8,6 +8,7 @@
       <div class='link'>
         <div class='row upper-link'>
           <div class='col-xs-12 col-md-12'>
+            <p><%= link.get('id') %></p>
             <a href="<%= link.get('href') %>"><%= link.get('title') %></a>
             <% if (link.get('comment').length > 0) { %>
               <p>>> <%= link.get('comment') %></p>
@@ -17,9 +18,11 @@
 
         <div class='row lower-link'>
           <div class='col-xs-12 col-md-8 lower-left-link'>
-            <% _.each(link.get('tags'), function(tag) { %>
-              <a class='tag' href='#/tags/<%= tag.get('shortcut') %>'><%= tag.get('displayName') %></a>
-            <% }); %>
+            <% if (link.get('taggables')) {%>
+              <% _.each(link.get('taggables'), function(tag) { %>
+                <%= tag.display_name %>
+              <% }); %>
+            <% } %>
           </div>
           <div class='col-xs-6 col-md-2 lower-right1-link'>
             <a href='#/links/<%= link.get('id') %>/edit'>Edit</a>
