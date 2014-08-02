@@ -10,5 +10,8 @@
     "requirejs-text": "~2.0.10",
     "modernizr": "~2.7.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "jquery": "~2.1.0"
+  }
 }

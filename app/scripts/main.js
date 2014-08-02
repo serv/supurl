@@ -13,6 +13,7 @@ require.config({
     backbone:         '../bower_components/backbone/backbone',
     underscore:       '../bower_components/lodash/dist/lodash',
     bootstrap:        '../bower_components/sass-bootstrap/dist/js/bootstrap',
+    typeahead:        '../bower_components/typeahead.js/dist/typeahead.bundle',
 
     pageRouter:       'routes/page',
     pageAboutView:    'views/page_about',

@@ -5,8 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
+  'typeahead',
   'linkModel'
-], function ($, _, Backbone, JST, Link) {
+], function ($,
+             _,
+             Backbone,
+             JST,
+             Typeahead,
+             Link) {
   'use strict';
 
   var LinksNewView = Backbone.View.extend({
@@ -33,6 +39,7 @@ define([
     render: function () {
       // this.$el.html(this.template(this.model.toJSON()));
       this.$el.html(this.template(this.model));
+      this.tagTypeahead();
     },
 
     onSubmit: function(e) {
@@ -74,8 +81,31 @@ define([
       } else {
         return [];
       }
+    },
 
+    tagTypeahead: function() {
+      var remoteUrl = 'http://localhost:3000/api/v0/tags/search_by_name?displayName=%QUERY',
+          linkTags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [],
+            remote: remoteUrl
+          });
+
+      linkTags.initialize();
+
+      $('.tags-field .typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'link-tags',
+        displayKey: 'display_name',
+        source: linkTags.ttAdapter()
+      });
     }
+
   });
 
   return LinksNewView;
