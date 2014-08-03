@@ -4,6 +4,36 @@ body {
 
 #main {
   padding-top: 80px;
-  padding-bottom: 80px;
   min-height: 550px
+}
+
+.home-footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  text-align: center;
+
+  .row {
+    ul {
+      padding: 0;
+      margin: 0 auto;
+      list-style: none;
+      display: inline-block;
+      li {
+        display: inline;
+        padding-left: 20px;
+      }
+    }
+
+    .footer-logo {
+      margin-top: 12px;
+      a {
+        font-size: 16px;
+        font-weight: 800;
+        font-style: italic;
+      }
+    }
+
+  }
+
 }
