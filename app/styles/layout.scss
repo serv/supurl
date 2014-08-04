@@ -2,6 +2,16 @@ body {
   overflow-x: hidden;
 }
 
+.layout-navigation{
+  .form-group {
+    margin-top: 8px;
+    margin-bottom: 7px;
+    .input-group {
+      width: 250px;
+    }
+  }
+}
+
 #main {
   padding-top: 80px;
   min-height: 550px
