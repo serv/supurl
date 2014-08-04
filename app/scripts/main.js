@@ -15,6 +15,8 @@ require.config({
     bootstrap:        '../bower_components/sass-bootstrap/dist/js/bootstrap',
     typeahead:        '../bower_components/typeahead.js/dist/typeahead.bundle',
 
+    layoutNavigationView: 'views/layout_navigation',
+
     pageRouter:       'routes/page',
     pageAboutView:    'views/page_about',
     pageHelpView:     'views/page_help',

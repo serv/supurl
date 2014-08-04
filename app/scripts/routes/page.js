@@ -3,12 +3,14 @@
 define([
   'jquery',
   'backbone',
+  'layoutNavigationView',
   'pageAboutView',
   'pageHelpView',
   'pageSettingsView',
   'pageRootView'
 ], function ($,
              Backbone,
+             LayoutNavigationView,
              PageAboutView,
              PageHelpView,
              PageSettingsView,
@@ -24,18 +26,22 @@ define([
     },
 
     root: function() {
+      new LayoutNavigationView();
       new PageRootView();
     },
 
     about: function() {
+      new LayoutNavigationView();
       new PageAboutView();
     },
 
     help: function() {
+      new LayoutNavigationView();
       new PageHelpView();
     },
 
     settings: function() {
+      new LayoutNavigationView();
       new PageSettingsView();
     }
 
