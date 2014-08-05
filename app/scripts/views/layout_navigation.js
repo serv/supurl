@@ -4,11 +4,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
+  'templates',
+  'typeahead'
 ], function ($,
              _,
              Backbone,
-             JST) {
+             JST,
+             Typeahead) {
   'use strict';
 
   var LayoutNavigationView = Backbone.View.extend({
@@ -30,6 +32,30 @@ define([
 
     render: function () {
       this.$el.html(this.template());
+      this.searchTypeahead();
+    },
+
+    searchTypeahead: function() {
+      var remoteUrl = 'http://localhost:3000/api/v0/tags/search_by_name?displayName=%QUERY',
+          linkTags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [],
+            remote: remoteUrl
+          });
+
+      linkTags.initialize();
+
+      $('.search.typeahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+      },
+      {
+        name: 'link-tags',
+        displayKey: 'display_name',
+        source: linkTags.ttAdapter()
+      });
     }
   });
 
