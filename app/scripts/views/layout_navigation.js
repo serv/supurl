@@ -36,15 +36,25 @@ define([
     },
 
     searchTypeahead: function() {
-      var remoteUrl = 'http://localhost:3000/api/v0/tags/search_by_name?displayName=%QUERY',
-          linkTags = new Bloodhound({
+      var remoteUrlTags =
+            'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
+          remoteUrlLinks =
+            'http://localhost:3000/api/v0/search/links_nav?query=%QUERY',
+          searchTags = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             local: [],
-            remote: remoteUrl
+            remote: remoteUrlTags
+          }),
+          searchLinks = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [],
+            remote: remoteUrlLinks
           });
 
-      linkTags.initialize();
+      searchTags.initialize();
+      searchLinks.initialize();
 
       $('.search.typeahead').typeahead({
         hint: true,
@@ -52,9 +62,20 @@ define([
         minLength: 1
       },
       {
-        name: 'link-tags',
+        name: 'search-tags',
         displayKey: 'display_name',
-        source: linkTags.ttAdapter()
+        source: searchTags.ttAdapter(),
+        templates: {
+          header: '<h3 class="typeahead-type-header">Tags</h3>'
+        }
+      },
+      {
+        name: 'search-links',
+        displayKey: 'title',
+        source: searchLinks.ttAdapter(),
+        templates: {
+          header: '<h3 class="typeahead-type-header">Links</h3>'
+        }
       });
     }
   });

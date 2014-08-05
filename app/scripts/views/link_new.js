@@ -84,7 +84,7 @@ define([
     },
 
     tagTypeahead: function() {
-      var remoteUrl = 'http://localhost:3000/api/v0/tags/search_by_name?displayName=%QUERY',
+      var remoteUrl = 'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
           linkTags = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
