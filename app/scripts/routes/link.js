@@ -3,14 +3,12 @@
 define([
   'jquery',
   'backbone',
-  'layoutNavigationView',
   'newLinkView',
   'editLinkView',
   'showLinkView',
   'linksView'
 ], function ($,
              Backbone,
-             LayoutNavigationView,
              NewLinkView,
              EditLinkView,
              ShowLinkView,
@@ -26,22 +24,18 @@ define([
     },
 
     newLink: function() {
-      new LayoutNavigationView();
       var newLinkView = new NewLinkView();
     },
 
     editLink: function(id) {
-      new LayoutNavigationView();
       var editLinkView = new EditLinkView({'id': id});
     },
 
     showLink: function(id) {
-      new LayoutNavigationView();
       var showLinkView = new ShowLinkView({'id': id});
     },
 
     links: function() {
-      new LayoutNavigationView();
       var linksView = new LinksView();
     }
 

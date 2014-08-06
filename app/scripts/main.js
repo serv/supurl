@@ -38,12 +38,14 @@ require([
   'backbone',
   'bootstrap',
   'pageRouter',
-  'linkRouter'
+  'linkRouter',
+  'layoutNavigationView'
 ], function (Backbone,
              Bootstrap,
              PageRouter,
-             LinkRouter) {
-
+             LinkRouter,
+             LayoutNavigationView) {
+  var layoutNavigationView = new LayoutNavigationView();
   var pageRouter = new PageRouter();
   var linkRouter = new LinkRouter();
   Backbone.history.start();
