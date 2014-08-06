@@ -55,9 +55,22 @@ define([
     },
 
     formPopulate: function() {
+      var model = this.model,
+          getTags = function() {
+            var tagsArray = [];
+
+            if (model.get('taggables')) {
+              _.each(model.get('taggables'), function(tag) {
+                tagsArray.push(tag.display_name);
+              });
+            }
+
+            return tagsArray.join(', ');
+          };
+
       this.$el.find('#input-title').val(this.model.get('title'));
       this.$el.find('#input-href').val(this.model.get('href'));
-      this.$el.find('#input-tags').val(this.model.get('tags'));
+      this.$el.find('#input-tags').val(getTags());
       this.$el.find('#input-suggested-tags').val(this.model.get('suggestedTags'));
       this.$el.find('#input-comment').val(this.model.get('comment'));
     }
