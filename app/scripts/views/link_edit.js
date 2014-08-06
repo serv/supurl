@@ -5,8 +5,16 @@ define([
   'underscore',
   'backbone',
   'templates',
+  'typeahead',
+  'tokenfield',
   'linkModel'
-], function ($, _, Backbone, JST, Link) {
+], function ($,
+             _,
+             Backbone,
+             JST,
+             Typeahead,
+             Tokenfield,
+             Link) {
   'use strict';
 
   var LinkEditView = Backbone.View.extend({
@@ -36,6 +44,7 @@ define([
     render: function () {
       this.$el.html(this.template(this.model));
       this.formPopulate();
+      this.tagTypeahead();
     },
 
     onSubmit: function(e) {
@@ -73,7 +82,31 @@ define([
       this.$el.find('#input-tags').val(getTags());
       this.$el.find('#input-suggested-tags').val(this.model.get('suggestedTags'));
       this.$el.find('#input-comment').val(this.model.get('comment'));
+    },
+
+    tagTypeahead: function() {
+      var typeaheadHash = {},
+          remoteUrl = 'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
+          linkTags = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: [],
+            remote: remoteUrl
+          });
+
+      linkTags.initialize();
+
+      typeaheadHash = {
+        name: 'link-tags',
+        displayKey: 'display_name',
+        source: linkTags.ttAdapter()
+      };
+
+      $('.tokenfield-typeahead').tokenfield({
+        typeahead: [null, typeaheadHash]
+      });
     }
+
   });
 
   return LinkEditView;
