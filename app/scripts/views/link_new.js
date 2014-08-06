@@ -6,12 +6,14 @@ define([
   'backbone',
   'templates',
   'typeahead',
+  'tokenfield',
   'linkModel'
 ], function ($,
              _,
              Backbone,
              JST,
              Typeahead,
+             Tokenfield,
              Link) {
   'use strict';
 
@@ -84,7 +86,8 @@ define([
     },
 
     tagTypeahead: function() {
-      var remoteUrl = 'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
+      var typeaheadHash = {},
+          remoteUrl = 'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
           linkTags = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -94,15 +97,14 @@ define([
 
       linkTags.initialize();
 
-      $('.tags-field .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-      },
-      {
+      typeaheadHash = {
         name: 'link-tags',
         displayKey: 'display_name',
         source: linkTags.ttAdapter()
+      };
+
+      $('.tokenfield-typeahead').tokenfield({
+        typeahead: [null, typeaheadHash]
       });
     }
 
