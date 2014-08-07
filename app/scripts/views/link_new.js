@@ -20,6 +20,8 @@ define([
   var LinksNewView = Backbone.View.extend({
     template: JST['app/scripts/templates/link_new.ejs'],
 
+    errorMessageTemplate: JST['app/scripts/templates/link_errors.ejs'],
+
     tagName: 'div',
 
     id: '',
@@ -47,16 +49,30 @@ define([
     onSubmit: function(e) {
       e.preventDefault();
 
-      this.model = new Link();
-      this.model.save({
+      var self = this,
+          link,
+          options;
+
+      link = {
         title:         this.$el.find('#input-title').val(),
         href:          this.$el.find('#input-href').val(),
         tags:          this.parseTags(),
         suggestedTags: this.$el.find('#input-suggested-tags').val(),
         comment:       this.$el.find('#input-comment').val()
-      });
+      };
 
-      Backbone.history.navigate('#', true);
+      options = {
+        success: function() {
+          self.hideErrors();
+          Backbone.history.navigate('#', true);
+        },
+        error: function() {
+          self.showErrors();
+        }
+      };
+
+      this.model = new Link();
+      this.model.save(link, options);
     },
 
     parseTags: function() {
@@ -106,6 +122,38 @@ define([
       $('.tokenfield-typeahead').tokenfield({
         typeahead: [null, typeaheadHash]
       });
+    },
+
+    showErrors: function() {
+      var self = this,
+          model = this.model,
+          alertMessage,
+          renderAlertList;
+
+      alertMessage = function() {
+
+        // Remove hidden class
+        self.$('.form-message').removeClass('hidden');
+      };
+
+      renderAlertList = function() {
+        var html = self.errorMessageTemplate(model.toJSON()),
+            selector = '.form-message';
+
+        self.$(selector).append(html);
+      };
+
+      _.each(model.errors, function(error) {
+        var controlGroup = self.$('#input-' + error.name).parent();
+        controlGroup.addClass('has-error');
+      }, self);
+
+      alertMessage();
+      renderAlertList();
+    },
+
+    hideErrors: function() {
+      this.$('.control-group').removeClass('error');
     }
 
   });
