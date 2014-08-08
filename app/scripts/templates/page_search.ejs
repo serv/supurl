@@ -1,0 +1,16 @@
+<div class='row' id='search'>
+  <div class="col-xs-12 col-md-8 search-links">
+    <h1>Links</h1>
+  </div>
+  <div class="col-xs-12 col-md-4 search-tags">
+    <h1>Tags</h1>
+
+    <% if (!_.isEmpty(this.collectionTags)) { %>
+      <% _.each(this.collectionTags.models, function(tag) { %>
+        <div class='tag'>
+          <a href='#tags/<%= tag.get('shortcut') %>'><%= tag.get('display_name') %></a>
+        </div>
+      <% }); %>
+    <% } %>
+  </div>
+</div>

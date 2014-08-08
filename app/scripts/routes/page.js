@@ -6,12 +6,14 @@ define([
   'pageAboutView',
   'pageHelpView',
   'pageSettingsView',
+  'pageSearchView',
   'pageRootView'
 ], function ($,
              Backbone,
              PageAboutView,
              PageHelpView,
              PageSettingsView,
+             PageSearchView,
              PageRootView) {
   'use strict';
 
@@ -20,7 +22,8 @@ define([
       '':         'root',
       'about':    'about',
       'help':     'help',
-      'settings': 'settings'
+      'settings': 'settings',
+      'search/:query':   'search'
     },
 
     root: function() {
@@ -37,6 +40,10 @@ define([
 
     settings: function() {
       new PageSettingsView();
+    },
+
+    search: function(query) {
+      new PageSearchView({'query': query});
     }
 
   });

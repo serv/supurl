@@ -23,6 +23,7 @@ require.config({
     pageHelpView:     'views/page_help',
     pageSettingsView: 'views/page_settings',
     pageRootView:     'views/page_root',
+    pageSearchView:   'views/page_search',
 
     linkRouter:       'routes/link',
     linkModel:        'models/link',
@@ -30,7 +31,10 @@ require.config({
     editLinkView:     'views/link_edit',
     showLinkView:     'views/link_show',
     links:            'collections/links',
-    linksView:        'views/links'
+    linksView:        'views/links',
+
+    tags:             'collections/tags',
+    tagModel:         'models/tag'
 
   }
 });
