@@ -48,6 +48,7 @@ define([
 
     onSubmit: function(e) {
       e.preventDefault();
+      this.disabled(true);
 
       var self = this,
           link,
@@ -67,6 +68,8 @@ define([
           Backbone.history.navigate('#', true);
         },
         error: function() {
+          self.disabled(false);
+          self.removeCurrentErrors();
           self.showErrors();
         }
       };
@@ -154,6 +157,16 @@ define([
 
     hideErrors: function() {
       this.$('.control-group').removeClass('error');
+    },
+
+    removeCurrentErrors: function() {
+      var selector = '.form-message ul';
+      this.$(selector).remove();
+    },
+
+    disabled: function(state) {
+      var selector = '.btn.btn-default'
+      this.$(selector).toggleClass('disabled', state);
     }
 
   });
