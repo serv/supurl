@@ -48,7 +48,7 @@ define([
 
     onSubmit: function(e) {
       e.preventDefault();
-      this.disabled(true);
+      this.disabledSubmit(true);
 
       var self = this,
           link,
@@ -68,7 +68,7 @@ define([
           Backbone.history.navigate('#', true);
         },
         error: function() {
-          self.disabled(false);
+          self.disabledSubmit(false);
           self.removeCurrentErrors();
           self.showErrors();
         }
@@ -164,7 +164,7 @@ define([
       this.$(selector).remove();
     },
 
-    disabled: function(state) {
+    disabledSubmit: function(state) {
       var selector = '.btn.btn-default'
       this.$(selector).toggleClass('disabled', state);
     }
