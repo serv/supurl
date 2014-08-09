@@ -1,6 +1,39 @@
 <div class='row' id='search'>
   <div class="col-xs-12 col-md-8 search-links">
     <h1>Links</h1>
+
+    <% if (!_.isEmpty(this.collectionLinks)) { %>
+      <% _.each(this.collectionLinks.models, function(link) { %>
+        <div class='link'>
+          <div class='row upper-link'>
+            <div class='col-xs-12 col-md-12'>
+              <p><%= link.get('id') %></p>
+              <a href="<%= link.get('href') %>"><%= link.get('title') %></a>
+              <% if (link.get('comment').length > 0) { %>
+                <p>>> <%= link.get('comment') %></p>
+              <% } %>
+            </div>
+          </div>
+
+          <div class='row lower-link'>
+            <div class='col-xs-12 col-md-8 lower-left-link'>
+              <% if (link.get('taggables')) {%>
+                <% _.each(link.get('taggables'), function(tag) { %>
+                  <%= tag.display_name %>
+                <% }); %>
+              <% } %>
+            </div>
+            <div class='col-xs-6 col-md-2 lower-right1-link'>
+              <a href='#/links/<%= link.get('id') %>/edit'>Edit</a>
+              <a href='#/links/<%= link.get('id') %>' data-id='<%= link.get('id') %>' data-method='delete' class='e-delete-link'>Delete</a>
+            </div>
+            <div class='col-xs-6 col-md-2 lower-right2-link'>
+              << time >>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    <% } %>
   </div>
   <div class="col-xs-12 col-md-4 search-tags">
     <h1>Tags</h1>
