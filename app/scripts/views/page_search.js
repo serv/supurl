@@ -45,13 +45,20 @@ define([
       this.collectionLinks.fetch();
 
       // this.listenTo(this.model, 'change', this.render);
+
+      this.hideSearchTypeahead();
     },
 
     render: function () {
       // this.$el.html(this.template(this.model.toJSON()));
       // TODO: Make sure links are also converted to JSON
       this.$el.html(this.template(this.collectionTags.toJSON()));
+    },
+
+    hideSearchTypeahead: function() {
+      $('.e-search .tt-dropdown-menu').hide();
     }
+
   });
 
   return PageSearchView;

@@ -24,7 +24,9 @@ define([
 
     el: '.layout-navigation',
 
-    events: {},
+    events: {
+      'keydown': 'processKey'
+    },
 
     initialize: function () {
       this.render();
@@ -36,25 +38,7 @@ define([
     },
 
     searchTypeahead: function() {
-      var remoteUrlTags =
-            'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
-          remoteUrlLinks =
-            'http://localhost:3000/api/v0/search/links_nav?query=%QUERY',
-          searchTags = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: [],
-            remote: remoteUrlTags
-          }),
-          searchLinks = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            local: [],
-            remote: remoteUrlLinks
-          });
-
-      searchTags.initialize();
-      searchLinks.initialize();
+      this.initSearchTypeahead();
 
       $('.search.typeahead').typeahead({
         hint: true,
@@ -64,7 +48,7 @@ define([
       {
         name: 'search-tags',
         displayKey: 'display_name',
-        source: searchTags.ttAdapter(),
+        source: this.searchTags.ttAdapter(),
         templates: {
           header: '<h3 class="typeahead-type-header">Tags</h3>'
         }
@@ -72,11 +56,47 @@ define([
       {
         name: 'search-links',
         displayKey: 'title',
-        source: searchLinks.ttAdapter(),
+        source: this.searchLinks.ttAdapter(),
         templates: {
           header: '<h3 class="typeahead-type-header">Links</h3>'
         }
       });
+    },
+
+    initSearchTypeahead: function() {
+      var remoteUrlTags =
+            'http://localhost:3000/api/v0/search/tags_nav?query=%QUERY',
+          remoteUrlLinks =
+            'http://localhost:3000/api/v0/search/links_nav?query=%QUERY';
+
+      this.searchTags = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: [],
+        remote: remoteUrlTags
+      }),
+      this.searchLinks = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: [],
+        remote: remoteUrlLinks
+      });
+
+      this.searchTags.initialize();
+      this.searchLinks.initialize();
+    },
+
+    currentQuery: function() {
+      return this.$('.search.tt-input').val()
+    },
+
+    processKey: function(e) {
+      var query = this.currentQuery();
+
+      // enter key
+      if (e.which === 13) {
+        Backbone.history.navigate('#search/' + query, true);
+      }
     }
   });
 

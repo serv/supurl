@@ -53,5 +53,18 @@ require([
   var layoutNavigationView = new LayoutNavigationView();
   var pageRouter = new PageRouter();
   var linkRouter = new LinkRouter();
+
+  // Empty nav search bar when you leave the search page
+  pageRouter.on("route", function(route, params) {
+    if (route !== 'search') {
+      $('.search.typeahead').val('');
+    }
+  });
+  linkRouter.on("route", function(route, params) {
+    if (route !== 'search') {
+      $('.search.typeahead').val('');
+    }
+  });
+
   Backbone.history.start();
 });
