@@ -16,6 +16,8 @@ define([
   var LayoutNavigationView = Backbone.View.extend({
     template: JST['app/scripts/templates/layout_navigation.ejs'],
 
+    templateLinkSearchPartial: JST['app/scripts/templates/layout_navigation_link.ejs'],
+
     tagName: 'div',
 
     id: '',
@@ -50,7 +52,7 @@ define([
         displayKey: 'display_name',
         source: this.searchTags.ttAdapter(),
         templates: {
-          header: '<h3 class="typeahead-type-header">Tags</h3>'
+          header: '<h3 class="typeahead-type-header">Tags</h3>',
         }
       },
       {
@@ -58,7 +60,8 @@ define([
         displayKey: 'title',
         source: this.searchLinks.ttAdapter(),
         templates: {
-          header: '<h3 class="typeahead-type-header">Links</h3>'
+          header: '<h3 class="typeahead-type-header">Links</h3>',
+          suggestion: this.templateLinkSearchPartial
         }
       });
     },

@@ -10,8 +10,20 @@ body {
       width: 360px;
       .twitter-typeahead {
         width: 300px;
+        p.link-search-partial {
+          a {
+            color: rgb(51, 51, 51);
+            text-decoration: none;
+          }
+        }
+        p.link-search-partial:hover {
+          a {
+            color: white;
+          }
+        }
       }
     }
+
   }
 }
 
