@@ -21,6 +21,18 @@ body {
             color: white;
           }
         }
+
+        p.tag-search-partial {
+          a {
+            color: rgb(51, 51, 51);
+            text-decoration: none;
+          }
+        }
+        p.tag-search-partial:hover {
+          a {
+            color: white;
+          }
+        }
       }
     }
 

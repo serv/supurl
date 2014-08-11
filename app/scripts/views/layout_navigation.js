@@ -18,6 +18,8 @@ define([
 
     templateLinkSearchPartial: JST['app/scripts/templates/layout_navigation_link.ejs'],
 
+    templateTagSearchPartial: JST['app/scripts/templates/layout_navigation_tag.ejs'],
+
     tagName: 'div',
 
     id: '',
@@ -53,6 +55,7 @@ define([
         source: this.searchTags.ttAdapter(),
         templates: {
           header: '<h3 class="typeahead-type-header">Tags</h3>',
+          suggestion: this.templateTagSearchPartial
         }
       },
       {
