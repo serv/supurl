@@ -33,8 +33,10 @@ require.config({
     links:            'collections/links',
     linksView:        'views/links',
 
+    tagRouter:        'routes/tag',
     tags:             'collections/tags',
-    tagModel:         'models/tag'
+    tagModel:         'models/tag',
+    showTagView:      'views/tag_show'
 
   }
 });
@@ -44,15 +46,18 @@ require([
   'bootstrap',
   'pageRouter',
   'linkRouter',
+  'tagRouter',
   'layoutNavigationView'
 ], function (Backbone,
              Bootstrap,
              PageRouter,
              LinkRouter,
+             TagRouter,
              LayoutNavigationView) {
-  var layoutNavigationView = new LayoutNavigationView();
-  var pageRouter = new PageRouter();
-  var linkRouter = new LinkRouter();
+  var layoutNavigationView = new LayoutNavigationView(),
+      pageRouter = new PageRouter(),
+      linkRouter = new LinkRouter(),
+      tagRouter = new TagRouter();
 
   // Empty nav search bar when you leave the search page
   pageRouter.on("route", function(route, params) {
@@ -61,6 +66,11 @@ require([
     }
   });
   linkRouter.on("route", function(route, params) {
+    if (route !== 'search') {
+      $('.search.typeahead').val('');
+    }
+  });
+  tagRouter.on("route", function(route, params) {
     if (route !== 'search') {
       $('.search.typeahead').val('');
     }
