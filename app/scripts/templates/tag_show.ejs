@@ -1,5 +1,31 @@
 <div class='row' id='show-tag'>
-  <div class="col-xs-12 col-md-8">
+  <div class="col-xs-12 col-md-12">
     <h1>Links for "<%= this.model.get('display_name') %>"</h1>
+    <% _.each(this.model.get('links'), function(link) { %>
+      <div class='link'>
+        <div class='row upper-link'>
+          <div class='col-xs-12 col-md-12'>
+            <p><%= link.id %></p>
+            <a href="<%= link.href %>"><%= link.title %></a>
+            <% if (link.comment.length > 0) { %>
+              <p> <%= link.comment %></p>
+            <% } %>
+          </div>
+        </div>
+
+        <div class='row lower-link'>
+          <div class='col-xs-12 col-md-8 lower-left-link'>
+
+          </div>
+          <div class='col-xs-6 col-md-2 lower-right1-link'>
+            <a href='#/links/<%= link.id %>/edit'>Edit</a>
+            <a href='#/links/<%= link.id %>' data-id='<%= link.id %>' data-method='delete' class='e-delete-link'>Delete</a>
+          </div>
+          <div class='col-xs-6 col-md-2 lower-right2-link'>
+            << time >>
+          </div>
+        </div>
+      </div>
+    <% }); %>
   </div>
 </div>

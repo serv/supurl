@@ -14,7 +14,8 @@ define([
 
     defaults: {
       shortcut: '',
-      displayName: ''
+      displayName: '',
+      links: []
     },
 
     validate: function(attrs, options) {
