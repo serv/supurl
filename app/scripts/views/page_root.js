@@ -4,11 +4,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
+  'templates',
+  'pageRootSignUpView'
 ], function ($,
              _,
              Backbone,
-             JST) {
+             JST,
+             PageRootSignUpView) {
   'use strict';
 
   var PageRootView = Backbone.View.extend({
@@ -26,10 +28,15 @@ define([
 
     initialize: function () {
       this.render();
+      this.renderPartialViews();
     },
 
     render: function () {
       this.$el.html(this.template());
+    },
+
+    renderPartialViews: function() {
+      var pageRootSignUpView = new PageRootSignUpView();
     }
   });
 

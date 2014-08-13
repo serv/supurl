@@ -18,12 +18,13 @@ require.config({
 
     layoutNavigationView: 'views/layout_navigation',
 
-    pageRouter:       'routes/page',
-    pageAboutView:    'views/page_about',
-    pageHelpView:     'views/page_help',
-    pageSettingsView: 'views/page_settings',
-    pageRootView:     'views/page_root',
-    pageSearchView:   'views/page_search',
+    pageRouter:           'routes/page',
+    pageAboutView:        'views/page_about',
+    pageHelpView:         'views/page_help',
+    pageSettingsView:     'views/page_settings',
+    pageRootView:         'views/page_root',
+    pageRootSignUpView:   'views/page_root_sign_up',
+    pageSearchView:       'views/page_search',
 
     linkRouter:       'routes/link',
     linkModel:        'models/link',
