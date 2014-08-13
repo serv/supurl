@@ -38,7 +38,9 @@ require.config({
     tagRouter:        'routes/tag',
     tags:             'collections/tags',
     tagModel:         'models/tag',
-    showTagView:      'views/tag_show'
+    showTagView:      'views/tag_show',
+
+    userModel:        'models/user'
 
   }
 });
