@@ -24,6 +24,7 @@ require.config({
     pageSettingsView:     'views/page_settings',
     pageRootView:         'views/page_root',
     pageRootSignUpView:   'views/page_root_sign_up',
+    pageRootSignInView:   'views/page_root_sign_in',
     pageSearchView:       'views/page_search',
 
     linkRouter:       'routes/link',

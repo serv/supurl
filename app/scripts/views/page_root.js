@@ -5,12 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'pageRootSignUpView'
+  'pageRootSignUpView',
+  'pageRootSignInView'
 ], function ($,
              _,
              Backbone,
              JST,
-             PageRootSignUpView) {
+             PageRootSignUpView,
+             PageRootSignInView) {
   'use strict';
 
   var PageRootView = Backbone.View.extend({
@@ -36,7 +38,8 @@ define([
     },
 
     renderPartialViews: function() {
-      var pageRootSignUpView = new PageRootSignUpView();
+      var pageRootSignUpView = new PageRootSignUpView(),
+          pageRootSignInView = new PageRootSignInView();
     }
   });
 
