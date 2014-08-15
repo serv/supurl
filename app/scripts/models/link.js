@@ -25,8 +25,9 @@ define([
     },
 
     validate: function(attrs, options) {
+      var errors;
       this.errors = [];
-      var errors = this.errors;
+      errors = this.errors;
 
       var re_weburl = new RegExp(
         "^" +
