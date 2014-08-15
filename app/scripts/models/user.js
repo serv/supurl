@@ -7,6 +7,7 @@ define([
   'use strict';
 
   var UserModel = Backbone.Model.extend({
+
     url: 'http://localhost:3000/api/v0/users',
 
     errors: [],
@@ -30,19 +31,24 @@ define([
       if (!attrs.username) {
         errorHash = {name: 'username', message: 'Please enter the username.'};
         errors.push(errorHash);
-      } else if (!attrs.email) {
+      }
+      if (!attrs.email) {
         errorHash = {name: 'email', message: 'Please enter the email.'};
         errors.push(errorHash);
-      } else if (!attrs.password) {
+      }
+      if (!attrs.password) {
         errorHash = {name: 'password', message: 'Please enter the password.'};
         errors.push(errorHash);
-      } else if (!attrs.password_confirmation) {
+      }
+      if (!attrs.password_confirmation) {
         errorHash = {
-          name: 'password_confirmation',
+          name: 'password-confirmation',
           message: 'Please enter the password confirmation.'
         };
         errors.push(errorHash);
       }
+
+
     },
 
     parse: function(response, options)  {

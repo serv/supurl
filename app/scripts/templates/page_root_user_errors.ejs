@@ -1,0 +1,7 @@
+<ul>
+  <% _.each(this.model.errors, function(error) { %>
+    <li>
+      <%= error.message %>
+    </li>
+  <% }); %>
+</ul>

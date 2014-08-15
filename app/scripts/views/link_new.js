@@ -156,7 +156,7 @@ define([
     },
 
     hideErrors: function() {
-      this.$('.control-group').removeClass('error');
+      this.$('.control-group').removeClass('has-error');
     },
 
     removeCurrentErrors: function() {
