@@ -58,7 +58,7 @@ define([
       options = {
         success: function() {
           self.hideErrors();
-          Backbone.history.navigate('#', true);
+          Backbone.history.navigate('#links', true);
         },
         error: function() {
           self.disabledSubmit(false);
