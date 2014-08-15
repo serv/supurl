@@ -20,7 +20,9 @@ define([
 
     el: '#main',
 
-    url: 'http://localhost:3000/api/v0/links',
+    url: function() {
+      return 'http://localhost:3000/api/v0/links';
+    }(),
 
     events: {
       'click .e-delete-link': 'onDelete'
@@ -38,7 +40,7 @@ define([
 
     onDelete: function (e) {
       e.preventDefault();
-      
+
       var id = $(e.currentTarget).data("id"),
           self = this,
           link = _.find(self.collection.models, function(l){
