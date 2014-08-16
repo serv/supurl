@@ -40,7 +40,9 @@ require.config({
     tagModel:         'models/tag',
     showTagView:      'views/tag_show',
 
-    userModel:        'models/user'
+    userModel:        'models/user',
+
+    sessionModel:     'models/session'
 
   }
 });
