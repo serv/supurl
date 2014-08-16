@@ -66,18 +66,55 @@ define([
 
       options = {
         success: function() {
-          // self.hideErrors();
+          self.hideErrors();
           Backbone.history.navigate('#', true);
         },
         error: function() {
           self.disabledSubmit(false);
-          // self.removeCurrentErrors();
-          // self.showErrors();
+          self.removeCurrentErrors();
+          self.showErrors();
         }
       };
 
       this.model = new Session();
       this.model.save(session, options);
+    },
+
+    showErrors: function() {
+      var self = this,
+          model = this.model,
+          alertMessage,
+          renderAlertList;
+
+      alertMessage = function() {
+
+        // Remove hidden class
+        self.$('.e-page-root-sign-in .form-message').removeClass('hidden');
+      };
+
+      renderAlertList = function() {
+        var html = self.errorMessageTemplate(model.toJSON()),
+            selector = '.e-page-root-sign-in .form-message';
+
+        self.$(selector).append(html);
+      };
+
+      _.each(model.errors, function(error) {
+        var controlGroup = self.$('#input-signin-' + error.name).parent();
+        controlGroup.addClass('has-error');
+      }, self);
+
+      alertMessage();
+      renderAlertList();
+    },
+
+    hideErrors: function() {
+      this.$('.control-group').removeClass('has-error');
+    },
+
+    removeCurrentErrors: function() {
+      var selector = '.form-message ul';
+      this.$(selector).remove();
     },
 
     disabledSubmit: function(state) {

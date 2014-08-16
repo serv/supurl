@@ -47,8 +47,6 @@ define([
         };
         errors.push(errorHash);
       }
-
-
     },
 
     parse: function(response, options)  {
