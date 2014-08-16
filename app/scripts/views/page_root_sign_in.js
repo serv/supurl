@@ -42,7 +42,7 @@ define([
 
     onSubmit: function(e) {
       e.preventDefault();
-      // this.disabledSubmit(true);
+      this.disabledSubmit(true);
 
       var self = this,
           session,
@@ -70,7 +70,7 @@ define([
           Backbone.history.navigate('#', true);
         },
         error: function() {
-          // self.disabledSubmit(false);
+          self.disabledSubmit(false);
           // self.removeCurrentErrors();
           // self.showErrors();
         }
@@ -79,6 +79,11 @@ define([
       this.model = new Session();
       this.model.save(session, options);
     },
+
+    disabledSubmit: function(state) {
+      var selector = '.btn.btn-default.e-sign-in';
+      this.$(selector).toggleClass('disabled', state);
+    }
 
 
   });
