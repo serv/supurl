@@ -37,7 +37,13 @@ define([
     },
 
     parse: function(response, options)  {
-        return response;
+      if (response.cookies) {
+        _.each(response.cookies, function(value, key) {
+          $.cookie(key, value);
+        });
+      }
+
+      return response;
     }
   });
 

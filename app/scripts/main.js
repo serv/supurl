@@ -9,12 +9,13 @@ require.config({
     }
   },
   paths: {
-    jquery:      '../bower_components/jquery/dist/jquery',
-    backbone:    '../bower_components/backbone/backbone',
-    underscore:  '../bower_components/lodash/dist/lodash',
-    bootstrap:   '../bower_components/sass-bootstrap/dist/js/bootstrap',
-    typeahead:   '../bower_components/typeahead.js/dist/typeahead.bundle',
-    tokenfield:  '../bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield',
+    jquery:       '../bower_components/jquery/dist/jquery',
+    backbone:     '../bower_components/backbone/backbone',
+    underscore:   '../bower_components/lodash/dist/lodash',
+    bootstrap:    '../bower_components/sass-bootstrap/dist/js/bootstrap',
+    typeahead:    '../bower_components/typeahead.js/dist/typeahead.bundle',
+    tokenfield:   '../bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield',
+    jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
 
     layoutNavigationView: 'views/layout_navigation',
 
@@ -50,12 +51,14 @@ require.config({
 require([
   'backbone',
   'bootstrap',
+  'jqueryCookie',
   'pageRouter',
   'linkRouter',
   'tagRouter',
   'layoutNavigationView'
 ], function (Backbone,
              Bootstrap,
+             JQueryCookie,
              PageRouter,
              LinkRouter,
              TagRouter,
