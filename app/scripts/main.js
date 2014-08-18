@@ -44,7 +44,6 @@ require.config({
     userModel:        'models/user',
 
     sessionModel:     'models/session'
-
   }
 });
 

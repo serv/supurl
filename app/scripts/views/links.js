@@ -6,7 +6,11 @@ define([
   'backbone',
   'templates',
   'links'
-], function ($, _, Backbone, JST, LinksCollection) {
+], function ($,
+             _,
+             Backbone,
+             JST,
+             LinksCollection) {
   'use strict';
 
   var LinksView = Backbone.View.extend({
@@ -35,7 +39,8 @@ define([
     },
 
     render: function () {
-      this.$el.html(this.template(this.collection.toJSON()));
+      var collection = this.collection.toJSON();
+      this.$el.html(this.template(collection));
     },
 
     onDelete: function (e) {
