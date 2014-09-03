@@ -43,7 +43,7 @@ define([
     onSubmit: function(e) {
       e.preventDefault();
       var signInUrl = 'http://localhost:3000/v0/auth/sign_in'
-                    + '?api_key=key&redirect_uri=auth/supurl',
+                    + '?api_key=key&redirect_uri=%23/auth/callback',
           options = 'height=500,width=400',
           popUp = window.open(signInUrl, 'Sign in using Supurl acount', options),
 

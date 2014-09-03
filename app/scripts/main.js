@@ -43,7 +43,10 @@ require.config({
 
     userModel:        'models/user',
 
-    sessionModel:     'models/session'
+    sessionModel:     'models/session',
+
+    authRouter:      'routes/auth',
+    callbackAuthView: 'views/auth_callback'
   }
 });
 
@@ -54,6 +57,7 @@ require([
   'pageRouter',
   'linkRouter',
   'tagRouter',
+  'authRouter',
   'layoutNavigationView'
 ], function (Backbone,
              Bootstrap,
@@ -61,11 +65,13 @@ require([
              PageRouter,
              LinkRouter,
              TagRouter,
+             AuthRouter,
              LayoutNavigationView) {
   var layoutNavigationView = new LayoutNavigationView(),
       pageRouter = new PageRouter(),
       linkRouter = new LinkRouter(),
-      tagRouter = new TagRouter();
+      tagRouter = new TagRouter(),
+      AuthRouter = new AuthRouter();
 
   // Empty nav search bar when you leave the search page
   pageRouter.on("route", function(route, params) {
