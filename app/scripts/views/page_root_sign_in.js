@@ -49,6 +49,7 @@ define([
 
           oauthInterval = window.setInterval(function() {
             if (popUp.closed) {
+              console.log($.cookie('authTokenSupurl'));
               console.log('Detect popup closed');
               window.clearInterval(oauthInterval);
             }

@@ -20,6 +20,7 @@ define([
     events: {},
 
     initialize: function () {
+      this.saveAuthToken();
       this.closePopUp();
     },
 
@@ -28,6 +29,15 @@ define([
 
     closePopUp: function() {
       window.close();
+    },
+
+    saveAuthToken: function() {
+      var windowHash = window.location.hash,
+          urlParams = windowHash.match(/#\/auth\/callback\?token=(.*)/);
+
+      debugger;
+      $.removeCookie('authTokenSupurl');
+      $.cookie('authTokenSupurl', urlParams[1]);
     }
   });
 
