@@ -32,12 +32,16 @@ define([
     },
 
     saveAuthToken: function() {
-      var windowHash = window.location.hash,
-          urlParams = windowHash.match(/#\/auth\/callback\?token=(.*)/);
+      var urlParams = window.location.hash.match(/#\/auth\/callback\?(.*)/),
+          urlParamsArray = urlParams[0].split('&'),
+          accessCode = urlParams[0].split('access_code=')[1],
+          refreshCode = urlParams[1].split('refresh_code=')[1];
 
-      debugger;
-      $.removeCookie('authTokenSupurl');
-      $.cookie('authTokenSupurl', urlParams[1]);
+      $.removeCookie('accessCode');
+      $.removeCookie('refreshCode');
+
+      $.cookie('accessCode', accessCode);
+      $.cookie('refreshCode', refreshCode);
     }
   });
 
