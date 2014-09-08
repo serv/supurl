@@ -24,10 +24,6 @@ define([
 
     el: '#main',
 
-    url: function() {
-      return 'http://localhost:3000/api/v0/links';
-    }(),
-
     events: {
       'click .e-delete-link': 'onDelete'
     },

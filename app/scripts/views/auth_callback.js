@@ -34,8 +34,9 @@ define([
     saveAuthToken: function() {
       var urlParams = window.location.hash.match(/#\/auth\/callback\?(.*)/),
           urlParamsArray = urlParams[0].split('&'),
-          accessCode = urlParams[0].split('access_code=')[1],
-          refreshCode = urlParams[1].split('refresh_code=')[1];
+          splitViaRefreshCode = urlParams[1].split('&refresh_code='),
+          refreshCode = splitViaRefreshCode[1],
+          accessCode = splitViaRefreshCode[0].split('access_code=')[1];
 
       $.cookie('accessCode', accessCode);
       $.cookie('refreshCode', refreshCode);

@@ -46,7 +46,8 @@ define([
       $.removeCookie('accessCode');
       $.removeCookie('refreshCode');
 
-      var signInUrl = 'http://localhost:3000/v0/auth/sign_in'
+      var self = this,
+          signInUrl = 'http://localhost:3000/v0/auth/sign_in'
                     + '?api_key=key&redirect_uri=%23/auth/callback'
                     + '&method=implicit',
           options = 'height=500,width=400',
