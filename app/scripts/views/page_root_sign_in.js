@@ -42,17 +42,21 @@ define([
 
     onSubmit: function(e) {
       e.preventDefault();
+
+      $.removeCookie('accessCode');
+      $.removeCookie('refreshCode');
+
       var signInUrl = 'http://localhost:3000/v0/auth/sign_in'
                     + '?api_key=key&redirect_uri=%23/auth/callback'
                     + '&method=implicit',
           options = 'height=500,width=400',
           popUp = window.open(signInUrl, 'Sign in using Supurl acount', options),
-
           oauthInterval = window.setInterval(function() {
             if (popUp.closed) {
-              console.log($.cookie('authTokenSupurl'));
-              console.log('Detect popup closed');
               window.clearInterval(oauthInterval);
+              if ($.cookie('accessCode') && $.cookie('refreshCode')) {
+                Backbone.history.navigate('#/links', true);
+              }
             }
           }, 500);
 

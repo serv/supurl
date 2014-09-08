@@ -37,9 +37,6 @@ define([
           accessCode = urlParams[0].split('access_code=')[1],
           refreshCode = urlParams[1].split('refresh_code=')[1];
 
-      $.removeCookie('accessCode');
-      $.removeCookie('refreshCode');
-
       $.cookie('accessCode', accessCode);
       $.cookie('refreshCode', refreshCode);
     }
