@@ -17,6 +17,7 @@ require.config({
     tokenfield:   '../bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield',
     jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
 
+    common:               'helpers/common',
     layoutNavigationView: 'views/layout_navigation',
 
     pageRouter:           'routes/page',
@@ -58,7 +59,9 @@ require([
   'linkRouter',
   'tagRouter',
   'authRouter',
-  'layoutNavigationView'
+  'layoutNavigationView',
+  'common',
+  'userModel'
 ], function (Backbone,
              Bootstrap,
              JQueryCookie,
@@ -66,12 +69,14 @@ require([
              LinkRouter,
              TagRouter,
              AuthRouter,
-             LayoutNavigationView) {
+             LayoutNavigationView,
+             common,
+             User) {
   var layoutNavigationView = new LayoutNavigationView(),
       pageRouter = new PageRouter(),
       linkRouter = new LinkRouter(),
       tagRouter = new TagRouter(),
-      AuthRouter = new AuthRouter();
+      authRouter = new AuthRouter()
 
   // Empty nav search bar when you leave the search page
   pageRouter.on("route", function(route, params) {

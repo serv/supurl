@@ -4,8 +4,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
-], function ($, _, Backbone, JST) {
+  'templates',
+  'common',
+  'userModel'
+], function ($, _, Backbone, JST, common, User) {
   'use strict';
 
   var AuthCallbackView = Backbone.View.extend({
@@ -40,6 +42,16 @@ define([
 
       $.cookie('accessCode', accessCode);
       $.cookie('refreshCode', refreshCode);
+
+      common.currentUser = new User();
+      common.currentUser.set({
+        token: {
+          accessCode: accessCode,
+          refreshCode: refreshCode
+        }
+      });
+
+      $.cookie('common', JSON.stringify(common));
     }
   });
 

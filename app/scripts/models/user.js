@@ -19,7 +19,12 @@ define([
       username: '',
       email: '',
       password: '',
-      password_confirmation: ''
+      password_confirmation: '',
+      token: {
+        // TODO: need expires_in
+        accessToken: '',
+        refreshCode: ''
+      }
     },
 
     validate: function(attrs, options) {
