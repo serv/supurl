@@ -5,12 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'typeahead'
+  'typeahead',
+  'sessionsHelper'
 ], function ($,
              _,
              Backbone,
              JST,
-             Typeahead) {
+             Typeahead,
+             SessionsHelper) {
   'use strict';
 
   var LayoutNavigationView = Backbone.View.extend({
@@ -33,11 +35,17 @@ define([
     },
 
     initialize: function () {
+      SessionsHelper.isSignedIn();
       this.render();
     },
 
     render: function () {
-      this.$el.html(this.template());
+
+      // Include SessionsHelper into template methods
+      var data = {};
+      _.extend(data, SessionsHelper);
+
+      this.$el.html(this.template(data));
       this.searchTypeahead();
     },
 

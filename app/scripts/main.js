@@ -18,6 +18,7 @@ require.config({
     jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
 
     common:               'helpers/common',
+    sessionsHelper:       'helpers/sessions_helper',
     layoutNavigationView: 'views/layout_navigation',
 
     pageRouter:           'routes/page',
