@@ -51,7 +51,8 @@ define([
         }
       });
 
-      $.cookie('common', JSON.stringify(common));
+      // Updates user info and cookie
+      common.currentUser.userInfoViaAccessCode();
     }
   });
 

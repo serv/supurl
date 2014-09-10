@@ -2,8 +2,9 @@
 
 define([
   'underscore',
-  'backbone'
-], function (_, Backbone) {
+  'backbone',
+  'common'
+], function (_, Backbone, common) {
   'use strict';
 
   var UserModel = Backbone.Model.extend({
@@ -16,6 +17,7 @@ define([
     },
 
     defaults: {
+      id: '',
       username: '',
       email: '',
       password: '',
@@ -56,7 +58,30 @@ define([
 
     parse: function(response, options)  {
       return response;
+    },
+
+    userInfoViaAccessCode: function() {
+      var url = this.url + '/'
+              + encodeURIComponent(this.get('token').accessCode)
+              + '/current_user_via_access_code';
+
+      $.ajax({
+        type : 'GET',
+        url : url,
+        dataType : 'json',
+        success : function(data) {
+          // TODO: use pubsub for this
+          common.currentUser.set({
+            id: data.id,
+            username: data.username,
+            email: data.email
+          });
+
+          $.cookie('common', JSON.stringify(common));
+        }
+      });
     }
+
   });
 
   return UserModel;
