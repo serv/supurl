@@ -3,17 +3,25 @@
 define([
   'jquery',
   'backbone',
-  'callbackAuthView'
-], function ($, Backbone, CallbackAuthView) {
+  'callbackAuthView',
+  'sessionsHelper',
+  'pageRootView'
+], function ($, Backbone, CallbackAuthView, SessionsHelper, PageRootView) {
   'use strict';
 
   var AuthRouter = Backbone.Router.extend({
     routes: {
-      'auth/callback': 'callbackAuth'
+      'auth/callback': 'callbackAuth',
+      'sign_out': 'signOut'
     },
 
     callbackAuth: function() {
       var callbackAuthView = new CallbackAuthView();
+    },
+
+    signOut: function() {
+      SessionsHelper.signOut();
+      new PageRootView();
     }
 
   });

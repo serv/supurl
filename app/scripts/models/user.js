@@ -78,8 +78,14 @@ define([
           });
 
           $.cookie('common', JSON.stringify(common));
+
+          // This must be done here because ajax call won't be
+          // made after the popup window closes
+          window.close();
         }
       });
+
+
     }
 
   });

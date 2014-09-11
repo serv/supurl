@@ -23,14 +23,9 @@ define([
 
     initialize: function () {
       this.saveAuthToken();
-      this.closePopUp();
     },
 
     render: function () {
-    },
-
-    closePopUp: function() {
-      window.close();
     },
 
     saveAuthToken: function() {
