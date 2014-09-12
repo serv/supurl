@@ -17,9 +17,10 @@ require.config({
     tokenfield:   '../bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield',
     jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
 
-    common:               'helpers/common',
-    sessionsHelper:       'helpers/sessions_helper',
-    layoutNavigationView: 'views/layout_navigation',
+    common:                               'helpers/common',
+    sessionsHelper:                       'helpers/sessions_helper',
+    layoutNavigationView:                 'views/layout_navigation',
+    layoutNavigationCogwheelDropdownView: 'views/layout_navigation_cogwheel_dropdown',
 
     pageRouter:           'routes/page',
     pageAboutView:        'views/page_about',
@@ -47,7 +48,7 @@ require.config({
 
     sessionModel:     'models/session',
 
-    authRouter:      'routes/auth',
+    authRouter:       'routes/auth',
     callbackAuthView: 'views/auth_callback'
   }
 });

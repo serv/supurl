@@ -6,13 +6,19 @@ define([
   'backbone',
   'templates',
   'typeahead',
-  'sessionsHelper'
+  'sessionsHelper',
+  'userModel',
+  'common',
+  'layoutNavigationCogwheelDropdownView'
 ], function ($,
              _,
              Backbone,
              JST,
              Typeahead,
-             SessionsHelper) {
+             SessionsHelper,
+             User,
+             common,
+             LayoutNavigationCogwheelDropdownView) {
   'use strict';
 
   var LayoutNavigationView = Backbone.View.extend({
@@ -37,6 +43,7 @@ define([
     initialize: function () {
       SessionsHelper.isSignedIn();
       this.render();
+      this.renderPartialViews();
     },
 
     render: function () {
@@ -111,6 +118,10 @@ define([
       if (e.which === 13) {
         Backbone.history.navigate('#search/' + query, true);
       }
+    },
+
+    renderPartialViews: function() {
+      var view = new LayoutNavigationCogwheelDropdownView();
     }
   });
 
