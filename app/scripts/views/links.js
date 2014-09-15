@@ -5,14 +5,12 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'links',
-  'common'
+  'links'
 ], function ($,
              _,
              Backbone,
              JST,
-             LinksCollection,
-             common) {
+             LinksCollection) {
   'use strict';
 
   var LinksView = Backbone.View.extend({

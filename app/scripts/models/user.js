@@ -2,9 +2,8 @@
 
 define([
   'underscore',
-  'backbone',
-  'common'
-], function (_, Backbone, common) {
+  'backbone'
+], function (_, Backbone) {
   'use strict';
 
   var UserModel = Backbone.Model.extend({
@@ -71,17 +70,13 @@ define([
         dataType : 'json',
         success : function(data) {
           // TODO: use pubsub for this
-          common.currentUser.set({
+          window.common.currentUser.set({
             id: data.id,
             username: data.username,
             email: data.email
           });
 
-          $.cookie('common', JSON.stringify(common));
-
-          // This must be done here because ajax call won't be
-          // made after the popup window closes
-          window.close();
+          $.cookie('common', JSON.stringify(window.common));
         }
       });
 

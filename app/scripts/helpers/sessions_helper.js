@@ -1,28 +1,16 @@
 define([
-    'jquery',
-    'common'
-], function($, common) {
+    'jquery'
+], function($) {
   var SessionsHelper = {
     isSignedIn: function() {
-      var common = $.cookie('common'),
-          commonParsed;
-
-      if (common) {
-        commonParsed = JSON.parse(common);
-
-        if (commonParsed.currentUser) {
-          return true;
-        }
-      } else {
-        return false;
-      }
+      return !_.isEmpty(window.common.currentUser.get('token').accessCode);
     },
 
     signOut: function() {
       var keys = ['currentUser', 'accessCode', 'refreshCode'];
 
       if (this.isSignedIn()) {
-        common = _.omit(common, function(value, key) {
+        window.common = _.omit(window.common, function(value, key) {
           return _.contains(keys, key);
         });
 

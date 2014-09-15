@@ -5,14 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'common',
-  'sessionsHelper'
+  'sessionsHelper',
+  'userModel'
 ], function ($,
              _,
              Backbone,
              JST,
-             common,
-             SessionsHelper) {
+             SessionsHelper,
+             User) {
   'use strict';
 
   var LayoutNavigationCogwheelDropdownView = Backbone.View.extend({
@@ -29,17 +29,18 @@ define([
     events: {},
 
     initialize: function () {
-      // this.model = common.currentUser;
-      // this.listenTo(this.model, 'change', this.render);
-      this.render();
+      if (SessionsHelper.isSignedIn()) {
+        this.render();
+      }
+
+      this.listenTo(window.common.currentUser, 'change', this.render);
     },
 
     render: function () {
       var data = {};
       _.extend(data, SessionsHelper);
-
       this.$el.html(this.template(data));
-    }
+    },
   });
 
   return LayoutNavigationCogwheelDropdownView;

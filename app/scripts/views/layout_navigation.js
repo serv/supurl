@@ -8,7 +8,6 @@ define([
   'typeahead',
   'sessionsHelper',
   'userModel',
-  'common',
   'layoutNavigationCogwheelDropdownView'
 ], function ($,
              _,
@@ -17,7 +16,6 @@ define([
              Typeahead,
              SessionsHelper,
              User,
-             common,
              LayoutNavigationCogwheelDropdownView) {
   'use strict';
 
@@ -121,6 +119,9 @@ define([
     },
 
     renderPartialViews: function() {
+      var view,
+          currentUser;
+
       var view = new LayoutNavigationCogwheelDropdownView();
     }
   });

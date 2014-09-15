@@ -72,8 +72,7 @@ require([
              TagRouter,
              AuthRouter,
              LayoutNavigationView,
-             common,
-             User) {
+             common) {
   var layoutNavigationView = new LayoutNavigationView(),
       pageRouter = new PageRouter(),
       linkRouter = new LinkRouter(),

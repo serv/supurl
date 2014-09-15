@@ -5,9 +5,8 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'common',
   'userModel'
-], function ($, _, Backbone, JST, common, User) {
+], function ($, _, Backbone, JST, User) {
   'use strict';
 
   var AuthCallbackView = Backbone.View.extend({
@@ -38,16 +37,7 @@ define([
       $.cookie('accessCode', accessCode);
       $.cookie('refreshCode', refreshCode);
 
-      common.currentUser = new User();
-      common.currentUser.set({
-        token: {
-          accessCode: accessCode,
-          refreshCode: refreshCode
-        }
-      });
-
-      // Updates user info and cookie
-      common.currentUser.userInfoViaAccessCode();
+      window.close();
     }
   });
 

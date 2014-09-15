@@ -52,10 +52,27 @@ define([
                     + '&method=implicit',
           options = 'height=500,width=400',
           popUp = window.open(signInUrl, 'Sign in using Supurl acount', options),
+          accessCode,
+          refreshCode,
           oauthInterval = window.setInterval(function() {
             if (popUp.closed) {
               window.clearInterval(oauthInterval);
-              if ($.cookie('accessCode') && $.cookie('refreshCode')) {
+
+              accessCode = $.cookie('accessCode');
+              refreshCode = $.cookie('refreshCode');
+
+              if (accessCode && refreshCode) {
+
+                window.common.currentUser.set({
+                  token: {
+                    accessCode: accessCode,
+                    refreshCode: refreshCode
+                  }
+                });
+
+                // Updates user info and cookie
+                window.common.currentUser.userInfoViaAccessCode();
+
                 Backbone.history.navigate('#/links', true);
               }
             }
