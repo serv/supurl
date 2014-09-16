@@ -7,11 +7,20 @@ define([
     },
 
     signOut: function() {
-      var keys = ['currentUser', 'accessCode', 'refreshCode'];
+      var keys = ['currentUser'];
 
       if (this.isSignedIn()) {
-        window.common = _.omit(window.common, function(value, key) {
-          return _.contains(keys, key);
+        window.common = _.each(window.common, function(value, key) {
+          if (key == 'currentUser') {
+            value.set({
+              token: {},
+              email: '',
+              username: '',
+              id: ''
+            });
+          } else {
+            value = null;
+          }
         });
 
         $.removeCookie('common');
