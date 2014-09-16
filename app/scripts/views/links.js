@@ -45,7 +45,7 @@ define([
       var id = $(e.currentTarget).data("id"),
           self = this,
           link = _.find(self.collection.models, function(l){
-            return l.get('id') == id;
+            return l.get('id') === id;
           });
 
       link.url = "http://localhost:3000/api/v0/links/" + id;
