@@ -11,7 +11,7 @@ define([
 
       if (this.isSignedIn()) {
         window.common = _.each(window.common, function(value, key) {
-          if (key == 'currentUser') {
+          if (key === 'currentUser') {
             value.set({
               token: {},
               email: '',
