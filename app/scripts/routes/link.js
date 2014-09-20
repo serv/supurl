@@ -6,13 +6,15 @@ define([
   'newLinkView',
   'editLinkView',
   'showLinkView',
-  'linksView'
+  'linksView',
+  'sessionsHelper'
 ], function ($,
              Backbone,
              NewLinkView,
              EditLinkView,
              ShowLinkView,
-             LinksView) {
+             LinksView,
+             SessionsHelper) {
   'use strict';
 
   var LinkRouter = Backbone.Router.extend({
@@ -24,19 +26,36 @@ define([
     },
 
     newLink: function() {
-      var newLinkView = new NewLinkView();
+      if (SessionsHelper.isSignedIn()) {
+        new NewLinkView();
+      } else {
+        // TODO: Display need to log in error message
+      }
+
     },
 
     editLink: function(id) {
-      var editLinkView = new EditLinkView({'id': id});
+      if (SessionsHelper.isSignedIn()) {
+        new EditLinkView({'id': id});
+      } else {
+        // TODO: Display need to log in error message
+      }
     },
 
     showLink: function(id) {
-      var showLinkView = new ShowLinkView({'id': id});
+      if (SessionsHelper.isSignedIn()) {
+        new ShowLinkView({'id': id});
+      } else {
+        // TODO: Display need to log in error message
+      }
     },
 
     links: function() {
-      var linksView = new LinksView();
+      if (SessionsHelper.isSignedIn()) {
+        new LinksView();
+      } else {
+        // TODO: Display need to log in error message
+      }
     }
 
   });
