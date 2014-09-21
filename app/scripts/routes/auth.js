@@ -21,7 +21,7 @@ define([
 
     signOut: function() {
       SessionsHelper.signOut();
-      new PageRootView();
+      Backbone.history.navigate('#', true);
     }
 
   });
