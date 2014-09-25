@@ -38,6 +38,7 @@ require.config({
     showLinkView:     'views/link_show',
     links:            'collections/links',
     linksView:        'views/links',
+    linksMessageView: 'views/links_message',
 
     tagRouter:        'routes/tag',
     tags:             'collections/tags',

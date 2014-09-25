@@ -5,12 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'links'
+  'links',
+  'linksMessageView'
 ], function ($,
              _,
              Backbone,
              JST,
-             LinksCollection) {
+             LinksCollection,
+             LinksMessageView) {
   'use strict';
 
   var LinksView = Backbone.View.extend({
@@ -28,7 +30,7 @@ define([
       'click .e-delete-link': 'onDelete'
     },
 
-    initialize: function () {
+    initialize: function (options) {
       this.collection = new LinksCollection();
       this.listenTo( this.collection, 'reset add change remove', this.render, this );
       this.collection.fetch();
@@ -37,6 +39,11 @@ define([
     render: function () {
       var collection = this.collection.toJSON();
       this.$el.html(this.template(collection));
+
+      new LinksMessageView({
+        type: 'success',
+        content: 'Successfully signed in!'
+      });
     },
 
     onDelete: function (e) {

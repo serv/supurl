@@ -52,6 +52,7 @@ define([
                     + '&method=implicit',
           options = 'height=500,width=400',
           popUp = window.open(signInUrl, 'Sign in using Supurl acount', options),
+          message,
           accessCode,
           refreshCode,
           oauthInterval = window.setInterval(function() {
