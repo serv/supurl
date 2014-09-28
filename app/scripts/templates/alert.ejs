@@ -1,0 +1,5 @@
+<div class="alert alert-<%= this.model.get('style') %> alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong><%= _.str.capitalize(this.model.get('style')) %>!</strong>
+  <%= this.model.get('message') %>
+</div>

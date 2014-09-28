@@ -6,6 +6,12 @@ require.config({
     bootstrap: {
       deps: ['jquery'],
       exports: 'jquery'
+    },
+    underscore: {
+      exports: '_'
+    },
+    underscoreString: {
+      deps: ['underscore']
     }
   },
   paths: {
@@ -16,11 +22,14 @@ require.config({
     typeahead:    '../bower_components/typeahead.js/dist/typeahead.bundle',
     tokenfield:   '../bower_components/bootstrap-tokenfield/dist/bootstrap-tokenfield',
     jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
+    underscoreString: '../bower_components/underscore.string/dist/underscore.string.min',
 
     common:                               'helpers/common',
     sessionsHelper:                       'helpers/sessions_helper',
     layoutNavigationView:                 'views/layout_navigation',
     layoutNavigationCogwheelDropdownView: 'views/layout_navigation_cogwheel_dropdown',
+    alertModel:                           'models/alert',
+    alertView:                            'views/alert',
 
     pageRouter:           'routes/page',
     pageAboutView:        'views/page_about',
@@ -58,6 +67,7 @@ require([
   'backbone',
   'bootstrap',
   'jqueryCookie',
+  'underscoreString',
   'pageRouter',
   'linkRouter',
   'tagRouter',
@@ -68,6 +78,7 @@ require([
 ], function (Backbone,
              Bootstrap,
              JQueryCookie,
+             UnderscoreString,
              PageRouter,
              LinkRouter,
              TagRouter,
@@ -78,7 +89,7 @@ require([
       pageRouter = new PageRouter(),
       linkRouter = new LinkRouter(),
       tagRouter = new TagRouter(),
-      authRouter = new AuthRouter()
+      authRouter = new AuthRouter();
 
   // Empty nav search bar when you leave the search page
   pageRouter.on("route", function(route, params) {

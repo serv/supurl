@@ -5,12 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'sessionModel'
+  'sessionModel',
+  'alertView'
 ], function ($,
              _,
              Backbone,
              JST,
-             Session) {
+             Session,
+             AlertView) {
   'use strict';
 
   var PageRootSignInView = Backbone.View.extend({
@@ -75,6 +77,14 @@ define([
                 window.common.currentUser.userInfoViaAccessCode();
 
                 Backbone.history.navigate('#/links', true);
+
+                new AlertView({
+                  alert: {
+                    message: 'Signed in successfully!',
+                    style: 'success',
+                    displayOn: '#/links'
+                  }
+                });
               }
             }
           }, 500);
