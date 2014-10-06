@@ -28,6 +28,7 @@ require.config({
     sessionsHelper:                       'helpers/sessions_helper',
     layoutNavigationView:                 'views/layout_navigation',
     layoutNavigationCogwheelDropdownView: 'views/layout_navigation_cogwheel_dropdown',
+    layoutNavigationSearchBarView:        'views/layout_navigation_search_bar',
     alertModel:                           'models/alert',
     alertView:                            'views/alert',
 

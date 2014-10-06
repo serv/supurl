@@ -8,7 +8,8 @@ define([
   'typeahead',
   'sessionsHelper',
   'userModel',
-  'layoutNavigationCogwheelDropdownView'
+  'layoutNavigationCogwheelDropdownView',
+  'layoutNavigationSearchBarView'
 ], function ($,
              _,
              Backbone,
@@ -16,7 +17,8 @@ define([
              Typeahead,
              SessionsHelper,
              User,
-             LayoutNavigationCogwheelDropdownView) {
+             LayoutNavigationCogwheelDropdownView,
+             LayoutNavigationSearchBarView) {
   'use strict';
 
   var LayoutNavigationView = Backbone.View.extend({
@@ -39,7 +41,6 @@ define([
     },
 
     initialize: function () {
-      SessionsHelper.isSignedIn();
       this.render();
       this.renderPartialViews();
     },
@@ -49,7 +50,6 @@ define([
       // Include SessionsHelper into template methods
       var data = {};
       _.extend(data, SessionsHelper);
-
       this.$el.html(this.template(data));
       this.searchTypeahead();
     },
@@ -119,10 +119,8 @@ define([
     },
 
     renderPartialViews: function() {
-      var view,
-          currentUser;
-
-      var view = new LayoutNavigationCogwheelDropdownView();
+      var cogwheelDropdownView = new LayoutNavigationCogwheelDropdownView(),
+          searchBar = new LayoutNavigationSearchBarView();
     }
   });
 
