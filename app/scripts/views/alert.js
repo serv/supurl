@@ -30,7 +30,7 @@ define([
       this.model = new Alert({
         message: options.alert.message,
         style: options.alert.style,
-        displayOn: options.alert.displayOn
+        displayOn: self.emptyHashUri(options.alert.displayOn)
       })
       // this.listenTo(this.model, 'change', this.render);
 
@@ -46,6 +46,12 @@ define([
 
     render: function () {
       this.$el.html(this.template(this.model.toJSON()));
+    },
+
+    emptyHashUri: function(uri) {
+      if (uri === '#') {
+        return '';
+      }
     }
   });
 

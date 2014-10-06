@@ -7,14 +7,16 @@ define([
   'editLinkView',
   'showLinkView',
   'linksView',
-  'sessionsHelper'
+  'sessionsHelper',
+  'alertView'
 ], function ($,
              Backbone,
              NewLinkView,
              EditLinkView,
              ShowLinkView,
              LinksView,
-             SessionsHelper) {
+             SessionsHelper,
+             AlertView) {
   'use strict';
 
   var LinkRouter = Backbone.Router.extend({
@@ -29,7 +31,14 @@ define([
       if (SessionsHelper.isSignedIn()) {
         new NewLinkView();
       } else {
-        // TODO: Display need to log in error message
+        Backbone.history.navigate('#', true);
+        new AlertView({
+          alert: {
+            message: 'You need to sign in first.',
+            style: 'danger',
+            displayOn: '#'
+          }
+        });
       }
 
     },
