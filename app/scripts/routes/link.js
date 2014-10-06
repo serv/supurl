@@ -47,7 +47,14 @@ define([
       if (SessionsHelper.isSignedIn()) {
         new EditLinkView({'id': id});
       } else {
-        // TODO: Display need to log in error message
+        Backbone.history.navigate('#', true);
+        new AlertView({
+          alert: {
+            message: 'You need to sign in first.',
+            style: 'danger',
+            displayOn: '#'
+          }
+        });
       }
     },
 
@@ -55,7 +62,14 @@ define([
       if (SessionsHelper.isSignedIn()) {
         new ShowLinkView({'id': id});
       } else {
-        // TODO: Display need to log in error message
+        Backbone.history.navigate('#', true);
+        new AlertView({
+          alert: {
+            message: 'You need to sign in first.',
+            style: 'danger',
+            displayOn: '#'
+          }
+        });
       }
     },
 
@@ -63,7 +77,14 @@ define([
       if (SessionsHelper.isSignedIn()) {
         new LinksView();
       } else {
-        // TODO: Display need to log in error message
+        Backbone.history.navigate('#', true);
+        new AlertView({
+          alert: {
+            message: 'You need to sign in first.',
+            style: 'danger',
+            displayOn: '#'
+          }
+        });
       }
     }
 
