@@ -51,6 +51,8 @@ define([
     emptyHashUri: function(uri) {
       if (uri === '#') {
         return '';
+      } else {
+        return uri;
       }
     }
   });
