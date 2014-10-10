@@ -5,12 +5,14 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'userModel'
+  'userModel',
+  'alertView'
 ], function ($,
              _,
              Backbone,
              JST,
-             User) {
+             User,
+             AlertView) {
   'use strict';
 
   var PageRootSignUpView = Backbone.View.extend({
@@ -27,7 +29,7 @@ define([
     el: '.v-sign-up',
 
     events: {
-      'submit .e-page-root-sign-up': 'onSubmit'
+      'click .e-sign-up': 'onSubmit'
     },
 
     initialize: function() {
@@ -42,75 +44,50 @@ define([
 
     onSubmit: function(e) {
       e.preventDefault();
-      this.disabledSubmit(true);
+
+      $.removeCookie('accessCode');
+      $.removeCookie('refreshCode');
 
       var self = this,
-          user,
-          options;
+          signUpUrl = 'http://localhost:3000/v0/auth/sign_up'
+                    + '?api_key=key&redirect_uri=%23/auth/callback',
+          options = 'height=500,width=400',
+          popUp = window.open(signUpUrl, 'Sign up using Supurl acount', options),
+          message,
+          accessCode,
+          refreshCode,
+          oauthInterval = window.setInterval(function() {
+            if (popUp.closed) {
+              window.clearInterval(oauthInterval);
 
-      user = {
-        'username': this.$el.find('#input-signup-username').val(),
-        'email': this.$el.find('#input-signup-email').val(),
-        'password': this.$el.find('#input-signup-password').val(),
-        'password_confirmation': this.$el.find('#input-signup-password-confirmation').val()
-      };
+              accessCode = $.cookie('accessCode');
+              refreshCode = $.cookie('refreshCode');
 
-      options = {
-        success: function() {
-          self.hideErrors();
-          Backbone.history.navigate('#links', true);
-        },
-        error: function() {
-          self.disabledSubmit(false);
-          self.removeCurrentErrors();
-          self.showErrors();
-        }
-      };
+              if (accessCode && refreshCode) {
 
-      this.model = new User();
-      this.model.save(user, options);
-    },
+                window.common.currentUser.set({
+                  token: {
+                    accessCode: accessCode,
+                    refreshCode: refreshCode
+                  }
+                });
 
-    showErrors: function() {
-      var self = this,
-          model = this.model,
-          alertMessage,
-          renderAlertList;
+                // Updates user info and cookie
+                window.common.currentUser.userInfoViaAccessCode();
 
-      alertMessage = function() {
+                Backbone.history.navigate('#/links', true);
 
-        // Remove hidden class
-        self.$('.e-page-root-sign-up .form-message').removeClass('hidden');
-      };
+                new AlertView({
+                  alert: {
+                    message: 'Signed in successfully!',
+                    style: 'success',
+                    displayOn: '#/links'
+                  }
+                });
+              }
+            }
+          }, 500);
 
-      renderAlertList = function() {
-        var html = self.errorMessageTemplate(model.toJSON()),
-            selector = '.e-page-root-sign-up .form-message';
-
-        self.$(selector).append(html);
-      };
-
-      _.each(model.errors, function(error) {
-        var controlGroup = self.$('#input-signup-' + error.name).parent();
-        controlGroup.addClass('has-error');
-      }, self);
-
-      alertMessage();
-      renderAlertList();
-    },
-
-    hideErrors: function() {
-      this.$('.control-group').removeClass('has-error');
-    },
-
-    removeCurrentErrors: function() {
-      var selector = '.form-message ul';
-      this.$(selector).remove();
-    },
-
-    disabledSubmit: function(state) {
-      var selector = '.btn.btn-default.e-sign-up';
-      this.$(selector).toggleClass('disabled', state);
     }
 
   });
