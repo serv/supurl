@@ -2,8 +2,11 @@
 
 define([
   'underscore',
-  'backbone'
-], function (_, Backbone) {
+  'backbone',
+  'sessionsHelper'
+], function (_,
+             Backbone,
+             SessionsHelper) {
   'use strict';
 
   var LinkModel = Backbone.Model.extend({
@@ -13,6 +16,7 @@ define([
     errors: [],
 
     initialize: function() {
+      this.setUrl();
     },
 
     defaults: {
@@ -79,6 +83,10 @@ define([
 
     parse: function(response, options)  {
       return response;
+    },
+
+    setUrl: function() {
+      this.url = this.url + '?session_param=' + SessionsHelper.sessionParamUrl();
     }
   });
 

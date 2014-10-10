@@ -31,6 +31,26 @@ define([
         // Already signed out
         return true;
       }
+    },
+
+    currentUser: function() {
+      if (window.common && window.common.currentUser) {
+        return window.common.currentUser;
+      }
+    }(),
+
+    sessionParam: function() {
+      var currentUser = this.currentUser,
+          sessionHash = {
+            access_code: currentUser.get('token').accessCode,
+            current_user: currentUser.get('email')
+          };
+
+      return sessionHash;
+    },
+
+    sessionParamUrl: function() {
+      return JSON.stringify(this.sessionParam());
     }
   };
 

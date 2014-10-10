@@ -24,6 +24,7 @@ require.config({
     jqueryCookie: '../bower_components/jquery-cookie/jquery.cookie',
     underscoreString: '../bower_components/underscore.string/dist/underscore.string.min',
 
+    app:                                  'models/app',
     common:                               'helpers/common',
     sessionsHelper:                       'helpers/sessions_helper',
     layoutNavigationView:                 'views/layout_navigation',
@@ -75,7 +76,8 @@ require([
   'authRouter',
   'layoutNavigationView',
   'common',
-  'userModel'
+  'userModel',
+  'app'
 ], function (Backbone,
              Bootstrap,
              JQueryCookie,
@@ -85,8 +87,10 @@ require([
              TagRouter,
              AuthRouter,
              LayoutNavigationView,
-             common) {
-  var layoutNavigationView = new LayoutNavigationView(),
+             common,
+             App) {
+  var app = new App(),
+      layoutNavigationView = new LayoutNavigationView(),
       pageRouter = new PageRouter(),
       linkRouter = new LinkRouter(),
       tagRouter = new TagRouter(),
