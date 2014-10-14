@@ -56,6 +56,7 @@ define([
           message,
           accessCode,
           refreshCode,
+          token,
           oauthInterval = window.setInterval(function() {
             if (popUp.closed) {
               window.clearInterval(oauthInterval);
@@ -74,6 +75,14 @@ define([
 
                 // Updates user info and cookie
                 window.common.currentUser.userInfoViaAccessCode();
+
+                // TODO: Need to refactor this.
+                // Include token header every ajax request sent
+                $(document).ajaxSend(function(event, request, settings) {
+                   if (accessCode) {
+                      request.setRequestHeader("token", accessCode);
+                   }
+                });
 
                 Backbone.history.navigate('#/links', true);
 

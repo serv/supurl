@@ -6,13 +6,15 @@ define([
   'backbone',
   'templates',
   'sessionModel',
-  'alertView'
+  'alertView',
+  'common'
 ], function ($,
              _,
              Backbone,
              JST,
              Session,
-             AlertView) {
+             AlertView,
+             common) {
   'use strict';
 
   var PageRootSignInView = Backbone.View.extend({
@@ -75,6 +77,14 @@ define([
 
                 // Updates user info and cookie
                 window.common.currentUser.userInfoViaAccessCode();
+
+                // TODO: Need to refactor this.
+                // Include token header every ajax request sent
+                $(document).ajaxSend(function(event, request, settings) {
+                   if (accessCode) {
+                      request.setRequestHeader("token", accessCode);
+                   }
+                });
 
                 Backbone.history.navigate('#/links', true);
 
