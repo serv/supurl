@@ -51,6 +51,16 @@ define([
 
     sessionParamUrl: function() {
       return JSON.stringify(this.sessionParam());
+    },
+
+    setAjaxHeader: function(options) {
+      var accessCode = options.accessCode;
+
+      $(document).ajaxSend(function(event, request, settings) {
+         if (accessCode) {
+            request.setRequestHeader("token", accessCode);
+         }
+      });
     }
   };
 
