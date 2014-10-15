@@ -88,7 +88,7 @@ define([
 
                 new AlertView({
                   alert: {
-                    message: 'Signed in successfully!',
+                    message: 'Signed up successfully!',
                     style: 'success',
                     displayOn: '#/links'
                   }
