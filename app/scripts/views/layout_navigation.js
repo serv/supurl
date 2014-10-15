@@ -36,9 +36,7 @@ define([
 
     el: '.layout-navigation',
 
-    events: {
-      'keydown': 'processKey'
-    },
+    events: {},
 
     initialize: function () {
       this.render();

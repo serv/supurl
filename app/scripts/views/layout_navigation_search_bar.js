@@ -26,7 +26,9 @@ define([
 
     el: '.search-bar',
 
-    events: {},
+    events: {
+      'keydown': 'processKey'
+    },
 
     initialize: function () {
       if (SessionsHelper.isSignedIn()) {
