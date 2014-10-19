@@ -35,8 +35,41 @@ define([
       this.$el.html(this.template(data));
     },
 
-    onSubmit: function() {
-      var email = $('.val-settings-account-email').val();
+    onSubmit: function(e) {
+      e.preventDefault();
+      this.disabledSubmit(true);
+
+      var self = this,
+          user,
+          options,
+          commonCookie = $.cookie('common'),
+          commonHash = {};
+
+      user = {
+        email: $('.val-settings-account-email').val()
+      };
+      window.common.currentUser.url = 'http://localhost:3000/api/v0/users/'
+                                    + window.common.currentUser.id
+                                    + '/account';
+
+      options = {
+        success: function() {
+          Backbone.history.navigate('#/settings', true);
+          commonHash = JSON.parse(commonCookie);
+          commonHash.currentUser.email = user.email;
+          $.cookie('common', JSON.stringify(commonHash));
+        },
+        error: function() {
+          self.disabledSubmit(false);
+        }
+      };
+
+      window.common.currentUser.save(user, options);
+    },
+
+    disabledSubmit: function(state) {
+      var selector = '.btn.btn-primary';
+      this.$(selector).toggleClass('disabled', state);
     }
   });
 

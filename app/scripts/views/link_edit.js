@@ -163,7 +163,7 @@ define([
     },
 
     disabledSubmit: function(state) {
-      var selector = '.btn.btn-default'
+      var selector = '.btn.btn-default';
       this.$(selector).toggleClass('disabled', state);
     }
 
