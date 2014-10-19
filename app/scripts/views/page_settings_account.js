@@ -4,8 +4,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
-], function ($, _, Backbone, JST) {
+  'templates',
+  'common',
+  'sessionsHelper'
+], function ($, _, Backbone, JST, common, SessionsHelper) {
   'use strict';
 
   var PageSettingsAccountView = Backbone.View.extend({
@@ -28,7 +30,9 @@ define([
 
     render: function () {
       // this.$el.html(this.template(this.model.toJSON()));
-      this.$el.html(this.template());
+      var data = {};
+      _.extend(data, SessionsHelper);
+      this.$el.html(this.template(data));
     }
   });
 

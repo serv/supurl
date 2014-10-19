@@ -1,1 +1,12 @@
 <h3>Account</h3>
+
+<p>
+  Update email.
+</p>
+
+<form role="form">
+  <div class="form-group">
+    <input type="text" class="form-control" value="<%= currentUser.get('email') %>">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
