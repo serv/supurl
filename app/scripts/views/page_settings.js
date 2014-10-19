@@ -4,8 +4,13 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
-], function ($, _, Backbone, JST) {
+  'templates',
+  'pageSettingsAccountView'
+], function ($,
+             _,
+             Backbone,
+             JST,
+             PageSettingsAccountView) {
   'use strict';
 
   var PageSettingsView = Backbone.View.extend({
@@ -21,12 +26,23 @@ define([
 
     events: {},
 
-    initialize: function () {
+    initialize: function (options) {
       this.render();
+      this.renderPartialViews(options);
     },
 
     render: function () {
       this.$el.html(this.template());
+    },
+
+    renderPartialViews: function(options) {
+      if (options.page === 'account') {
+        new PageSettingsAccountView();
+      } else if (options.page === 'password') {
+
+      } else if (options.page === 'preferences') {
+
+      }
     }
   });
 
