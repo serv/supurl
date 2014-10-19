@@ -21,18 +21,22 @@ define([
 
     el: '.settings-page',
 
-    events: {},
+    events: {
+      'click .e-settings-account-submit': 'onSubmit'
+    },
 
     initialize: function () {
-      // this.listenTo(this.model, 'change', this.render);
       this.render();
     },
 
     render: function () {
-      // this.$el.html(this.template(this.model.toJSON()));
       var data = {};
       _.extend(data, SessionsHelper);
       this.$el.html(this.template(data));
+    },
+
+    onSubmit: function() {
+      var email = $('.val-settings-account-email').val();
     }
   });
 
