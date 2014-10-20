@@ -27,6 +27,8 @@ define([
     initialize: function (options) {
       var self = this;
 
+      this.setCustomEl(options);
+
       this.model = new Alert({
         message: options.alert.message,
         style: options.alert.style,
@@ -53,6 +55,15 @@ define([
         return '';
       } else {
         return uri;
+      }
+    },
+
+    setCustomEl: function(options) {
+      var customEl = options.alert.customEl;
+
+      if (customEl) {
+        this.el = customEl;
+        this.$el = $(this.el);
       }
     }
   });

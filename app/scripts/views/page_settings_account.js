@@ -6,8 +6,9 @@ define([
   'backbone',
   'templates',
   'common',
-  'sessionsHelper'
-], function ($, _, Backbone, JST, common, SessionsHelper) {
+  'sessionsHelper',
+  'alertView'
+], function ($, _, Backbone, JST, common, SessionsHelper, AlertView) {
   'use strict';
 
   var PageSettingsAccountView = Backbone.View.extend({
@@ -54,10 +55,18 @@ define([
 
       options = {
         success: function() {
-          Backbone.history.navigate('#/settings', true);
           commonHash = JSON.parse(commonCookie);
           commonHash.currentUser.email = user.email;
           $.cookie('common', JSON.stringify(commonHash));
+
+          new AlertView({
+            alert: {
+              message: 'Updated the email',
+              style: 'success',
+              displayOn: '#/settings',
+              customEl: '#settings-alert'
+            }
+          });
         },
         error: function() {
           self.disabledSubmit(false);
@@ -71,6 +80,7 @@ define([
       var selector = '.btn.btn-primary';
       this.$(selector).toggleClass('disabled', state);
     }
+
   });
 
   return PageSettingsAccountView;
