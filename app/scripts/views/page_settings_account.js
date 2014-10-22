@@ -67,6 +67,7 @@ define([
               customEl: '#settings-alert'
             }
           });
+          self.disabledSubmit(false);
         },
         error: function() {
           self.disabledSubmit(false);
