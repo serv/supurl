@@ -141,13 +141,14 @@ define([
 
       renderAlertList = function() {
         var html = self.errorMessageTemplate(model.toJSON()),
-            selector = '.form-message';
+            selector = '.form-message',
+            controlGroup;
 
         self.$(selector).append(html);
       };
 
       _.each(model.errors, function(error) {
-        var controlGroup = self.$('#input-' + error.name).parent();
+        controlGroup = self.$('#input-' + error.name).parent();
         controlGroup.addClass('has-error');
       }, self);
 

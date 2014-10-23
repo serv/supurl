@@ -71,6 +71,7 @@ define([
         },
         error: function() {
           self.disabledSubmit(false);
+          self.showErrors();
         }
       };
 
@@ -80,6 +81,31 @@ define([
     disabledSubmit: function(state) {
       var selector = '.btn.btn-primary';
       this.$(selector).toggleClass('disabled', state);
+    },
+
+    showErrors: function() {
+      var self = this,
+          messages = [],
+          model = window.common.currentUser;
+
+      _.each(model.errors, function(error) {
+
+        // TODO: making sure that only email error gets displayed
+        // TODO: when rails error is fixed, remove this conditional
+        // TODO: https://github.com/rails/rails/issues/17364
+        if (error.name === 'email') {
+          messages.push(error);
+        }
+      });
+
+      new AlertView({
+        alert: {
+          message: messages,
+          style: 'danger',
+          displayOn: '#/settings',
+          customEl: '#settings-alert'
+        }
+      });
     }
 
   });

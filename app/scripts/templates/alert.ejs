@@ -1,5 +1,11 @@
 <div class="alert alert-<%= this.model.get('style') %> alert-dismissible" role="alert">
   <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
   <strong><%= _.str.capitalize(this.model.get('style')) %>!</strong>
-  <%= this.model.get('message') %>
+  <% if ( $.type(this.model.get('message')) === 'string' ) { %>
+    <%= this.model.get('message') %>
+  <% } else if ( $.type(this.model.get('message')) === 'array' ) { %>
+    <% _.each(this.model.get('message'), function(message) { %>
+      <%= message.message %>
+    <% }); %>
+  <% } %>
 </div>
