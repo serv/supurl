@@ -38,6 +38,7 @@ require.config({
     pageHelpView:             'views/page_help',
     pageSettingsView:         'views/page_settings',
     pageSettingsAccountView:  'views/page_settings_account',
+    pageSettingsPasswordView: 'views/page_settings_password',
     pageRootView:             'views/page_root',
     pageRootSignUpView:       'views/page_root_sign_up',
     pageRootSignInView:       'views/page_root_sign_in',

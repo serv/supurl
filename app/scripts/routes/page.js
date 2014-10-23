@@ -54,7 +54,9 @@ define([
     },
 
     settingsPassword: function() {
-
+      new PageSettingsView({
+        page: 'password'
+      });
     },
 
     settingsPreference: function() {
