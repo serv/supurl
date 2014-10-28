@@ -8,8 +8,8 @@ define([
 ], function ($, _, Backbone, JST) {
   'use strict';
 
-  var PageSettingsPasswordView = Backbone.View.extend({
-    template: JST['app/scripts/templates/page_settings_password.ejs'],
+  var PageSettingsPreferencesView = Backbone.View.extend({
+    template: JST['app/scripts/templates/page_settings_preferences.ejs'],
 
     tagName: 'div',
 
@@ -30,5 +30,5 @@ define([
     }
   });
 
-  return PageSettingsPasswordView;
+  return PageSettingsPreferencesView;
 });

@@ -6,13 +6,15 @@ define([
   'backbone',
   'templates',
   'pageSettingsAccountView',
-  'pageSettingsPasswordView'
+  'pageSettingsPasswordView',
+  'pageSettingsPreferencesView'
 ], function ($,
              _,
              Backbone,
              JST,
              PageSettingsAccountView,
-             PageSettingsPasswordView) {
+             PageSettingsPasswordView,
+             PageSettingsPreferencesView) {
   'use strict';
 
   var PageSettingsView = Backbone.View.extend({
@@ -43,7 +45,7 @@ define([
       } else if (options.page === 'password') {
         new PageSettingsPasswordView();
       } else if (options.page === 'preferences') {
-
+        new PageSettingsPreferencesView();
       }
     }
   });

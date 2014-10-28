@@ -25,7 +25,7 @@ define([
       'settings': 'settings',
       'settings/account': 'settingsAccount',
       'settings/password': 'settingsPassword',
-      'settings/preference': 'settingsPreferences',
+      'settings/preferences': 'settingsPreferences',
       'search/:query':   'search'
     },
 
@@ -59,8 +59,10 @@ define([
       });
     },
 
-    settingsPreference: function() {
-
+    settingsPreferences: function() {
+      new PageSettingsView({
+        page: 'preferences'
+      });
     },
 
     search: function(query) {
