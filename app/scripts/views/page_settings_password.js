@@ -71,9 +71,12 @@ define([
           });
           self.disabledSubmit(false);
         },
-        error: function() {
+        error: function(model, response) {
+          window.rrresponse = response;
           self.disabledSubmit(false);
-          self.showErrors();
+          self.showErrors({
+            response: response
+          });
         }
       };
 
@@ -85,15 +88,21 @@ define([
       this.$(selector).toggleClass('disabled', state);
     },
 
-    showErrors: function() {
+    showErrors: function(options) {
       var self = this,
           messages = [],
           model = window.common.currentUser;
 
-      _.each(model.errors, function(error) {
+      if (_.isEmpty(options.response.responseJSON)) {
+        _.each(model.errors, function(error) {
 
-        messages.push(error);
-      });
+          if (error.name === 'email') {
+            messages.push(error);
+          }
+        });
+      } else {
+        messages.push(options.response.responseJSON);
+      }
 
       new AlertView({
         alert: {
