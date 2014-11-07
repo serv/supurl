@@ -40,13 +40,27 @@ define([
     },
 
     renderPartialViews: function(options) {
-      if (options.page === 'account') {
-        new PageSettingsAccountView();
-      } else if (options.page === 'password') {
-        new PageSettingsPasswordView();
-      } else if (options.page === 'preferences') {
-        new PageSettingsPreferencesView();
+
+      if (options.page) {
+        if (options.page === 'account') {
+          new PageSettingsAccountView();
+        } else if (options.page === 'password') {
+          new PageSettingsPasswordView();
+        } else if (options.page === 'preferences') {
+          new PageSettingsPreferencesView();
+        }
+
+        this.activateTab(options.page);
       }
+    },
+
+    activateTab: function(page) {
+      var self = this,
+          dom = '.e-tab-' + page,
+          activeLi = 'ul.nav.nav-pills.nav-stacked li.active';
+
+      this.$(activeLi).removeClass('active');
+      this.$(dom).addClass('active');
     }
   });
 
