@@ -271,7 +271,33 @@ module.exports = function (grunt) {
                     ]
                 }
             }
-        }
+        },
+
+        aws: grunt.file.readJSON('aws-keys.json'),
+
+        aws_s3: {
+          options: {
+            accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+            secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+            region: 'us-east-1',
+            uploadConcurrency: 2, // 5 simultaneous uploads
+            downloadConcurrency: 2 // 5 simultaneous downloads
+          },
+          production: {
+            options: {
+              bucket: 'supurl.com',
+              params: {
+                // ContentEncoding: 'gzip' // applies to all the files!
+              },
+              mime: {
+                'dist/assets/production/LICENCE': 'text/plain'
+              }
+            },
+            files: [
+              {expand: true, cwd: 'dist', src: ['**'], dest: ''},
+            ]
+          }
+        },
     });
 
     grunt.registerTask('createDefaultTemplate', function () {
@@ -351,6 +377,7 @@ module.exports = function (grunt) {
     grunt.registerTask('default', [
         'jshint',
         'test',
-        'build'
+        'build',
+        'aws_s3'
     ]);
 };
