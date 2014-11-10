@@ -10,3 +10,6 @@ test/bower_components/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# aws
+aws-keys.json
