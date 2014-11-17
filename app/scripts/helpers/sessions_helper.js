@@ -27,7 +27,7 @@ define([
   SessionsHelper.currentUser = function() {
     var common = Common.getInstance();
 
-    if (!_isEmpty(common.get('currentUser'))) {
+    if (!_.isEmpty(common.get('currentUser'))) {
       return common.get('currentUser');
     } else {
       return false;
