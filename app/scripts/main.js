@@ -25,7 +25,7 @@ require.config({
     underscoreString: '../bower_components/underscore.string/dist/underscore.string.min',
 
     app:                                  'models/app',
-    common:                               'helpers/common',
+    common:                               'globals/common',
     sessionsHelper:                       'helpers/sessions_helper',
     layoutNavigationView:                 'views/layout_navigation',
     layoutNavigationCogwheelDropdownView: 'views/layout_navigation_cogwheel_dropdown',
@@ -78,8 +78,6 @@ require([
   'tagRouter',
   'authRouter',
   'layoutNavigationView',
-  'common',
-  'userModel',
   'app'
 ], function (Backbone,
              Bootstrap,
@@ -90,7 +88,6 @@ require([
              TagRouter,
              AuthRouter,
              LayoutNavigationView,
-             common,
              App) {
   var app = new App(),
       layoutNavigationView = new LayoutNavigationView(),

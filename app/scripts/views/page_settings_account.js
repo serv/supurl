@@ -8,7 +8,7 @@ define([
   'common',
   'sessionsHelper',
   'alertView'
-], function ($, _, Backbone, JST, common, SessionsHelper, AlertView) {
+], function ($, _, Backbone, JST, Common, SessionsHelper, AlertView) {
   'use strict';
 
   var PageSettingsAccountView = Backbone.View.extend({
@@ -43,21 +43,20 @@ define([
       var self = this,
           user,
           options,
-          commonCookie = $.cookie('common'),
-          commonHash = {};
+          common = Common.getInstance(),
+          currentUser = common.get('currentUser');
 
       user = {
         email: $('.val-settings-account-email').val()
       };
-      window.common.currentUser.url = 'http://localhost:3000/api/v0/users/'
-                                    + window.common.currentUser.id
-                                    + '/account';
+
+      currentUser.url = 'http://localhost:3000/api/v0/users/'
+                      + currentUser.id
+                      + '/account';
 
       options = {
         success: function() {
-          commonHash = JSON.parse(commonCookie);
-          commonHash.currentUser.email = user.email;
-          $.cookie('common', JSON.stringify(commonHash));
+          currentUser.set({'email': user.email});
 
           new AlertView({
             alert: {
@@ -75,7 +74,7 @@ define([
         }
       };
 
-      window.common.currentUser.save(user, options);
+      currentUser.save(user, options);
     },
 
     disabledSubmit: function(state) {
@@ -86,7 +85,8 @@ define([
     showErrors: function() {
       var self = this,
           messages = [],
-          model = window.common.currentUser;
+          common = Common.getInstance(),
+          model = common.get('currentUser');
 
       _.each(model.errors, function(error) {
 

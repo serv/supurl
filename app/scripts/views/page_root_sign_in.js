@@ -15,7 +15,7 @@ define([
              JST,
              Session,
              AlertView,
-             common,
+             Common,
              SessionsHelper) {
   'use strict';
 
@@ -49,6 +49,8 @@ define([
     onSubmit: function(e) {
       e.preventDefault();
 
+      var common = Common.getInstance();
+
       $.removeCookie('accessCode');
       $.removeCookie('refreshCode');
 
@@ -70,16 +72,18 @@ define([
 
               if (accessCode && refreshCode) {
 
-                window.common.currentUser.set({
+                common.get('currentUser').set({
                   token: {
                     accessCode: accessCode,
                     refreshCode: refreshCode
                   }
                 });
+                common.get('token')['accessCode'] = accessCode;
+                common.get('token')['refreshCode'] = refreshCode;
 
                 // Updates user info and cookie
-                window.common.currentUser.userInfoViaAccessCode();
-
+                SessionsHelper.setCurrentUser({common: common});
+                debugger;
                 // TODO: Need to refactor this.
                 // Include token header every ajax request sent
                 SessionsHelper.setAjaxHeader({

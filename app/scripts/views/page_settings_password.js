@@ -8,7 +8,7 @@ define([
   'common',
   'sessionsHelper',
   'alertView'
-], function ($, _, Backbone, JST, common, SessionsHelper, AlertView) {
+], function ($, _, Backbone, JST, Common, SessionsHelper, AlertView) {
   'use strict';
 
   var PageSettingsPasswordView = Backbone.View.extend({
@@ -43,23 +43,21 @@ define([
       var self = this,
           user,
           options,
-          commonCookie = $.cookie('common'),
-          commonHash = {};
+          common = Common.getInstance(),
+          currentUser = common.get('currentUser');
 
       user = {
         current_password: $('.val-settings-password-old').val(),
         password: $('.val-settings-password-new').val(),
         password_confirmation: $('.val-settings-password-new-confirmation').val()
       };
-      window.common.currentUser.url = 'http://localhost:3000/api/v0/users/'
-                                    + window.common.currentUser.id
-                                    + '/password';
+      currentUser.url = 'http://localhost:3000/api/v0/users/'
+                      + currentUser.id
+                      + '/password';
 
       options = {
         success: function() {
-          commonHash = JSON.parse(commonCookie);
-          commonHash.currentUser.email = user.email;
-          $.cookie('common', JSON.stringify(commonHash));
+          currentUser.set({'email': user.email});
 
           new AlertView({
             alert: {
@@ -80,7 +78,7 @@ define([
         }
       };
 
-      window.common.currentUser.save(user, options);
+      currentUser.save(user, options);
     },
 
     disabledSubmit: function(state) {
@@ -91,7 +89,8 @@ define([
     showErrors: function(options) {
       var self = this,
           messages = [],
-          model = window.common.currentUser;
+          common = Common.getInstance(),
+          model = common.get('currentUser');
 
       if (_.isEmpty(options.response.responseJSON)) {
         _.each(model.errors, function(error) {

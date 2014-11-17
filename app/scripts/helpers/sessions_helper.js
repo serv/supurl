@@ -1,68 +1,84 @@
+/*global define*/
+
 define([
-    'jquery'
-], function($) {
-  var SessionsHelper = {
-    isSignedIn: function() {
-      return !_.isEmpty(window.common.currentUser.get('token').accessCode);
-    },
+  'underscore',
+  'backbone',
+  'common',
+  'userModel'
+], function (_, Backbone, Common, User) {
+  'use strict';
 
-    signOut: function() {
-      var keys = ['currentUser'];
+  var SessionsHelper = Backbone.Model.extend({
+  });
 
-      if (this.isSignedIn()) {
-        window.common = _.each(window.common, function(value, key) {
-          if (key === 'currentUser') {
-            value.set({
-              token: {},
-              email: '',
-              username: '',
-              id: ''
-            });
-          } else {
-            value = null;
-          }
-        });
+  SessionsHelper.isSignedIn = function() {
+    var common = Common.getInstance();
 
-        $.removeCookie('common');
-        $.removeCookie('accessCode');
-        $.removeCookie('refreshCode');
-      } else {
+    return !_.isEmpty(common.get('currentUser'))
+        && !_.isEmpty(common.get('currentUser').get('token').accessToken);
+  };
 
-        // Already signed out
-        return true;
-      }
-    },
+  SessionsHelper.signOut = function() {
+    var common = Common.getInstance();
 
-    currentUser: function() {
-      if (window.common && window.common.currentUser) {
-        return window.common.currentUser;
-      }
-    }(),
+    common.set({'currentUser': new User()});
+  };
 
-    sessionParam: function() {
-      var currentUser = this.currentUser,
-          sessionHash = {
-            access_code: currentUser.get('token').accessCode,
-            current_user: currentUser.get('email')
-          };
+  SessionsHelper.currentUser = function() {
+    var common = Common.getInstance();
 
-      return sessionHash;
-    },
-
-    sessionParamUrl: function() {
-      return JSON.stringify(this.sessionParam());
-    },
-
-    setAjaxHeader: function(options) {
-      var accessCode = options.accessCode;
-
-      $(document).ajaxSend(function(event, request, settings) {
-         if (accessCode) {
-            request.setRequestHeader("token", accessCode);
-         }
-      });
+    if (!_isEmpty(common.get('currentUser'))) {
+      return common.get('currentUser');
+    } else {
+      return false;
     }
   };
 
+  SessionsHelper.sessionParam = function() {
+    var common = Common.getInstance();
+
+    return {
+      access_code: common.get('currentUser').get('token').accessCode,
+      current_user: common.get('currentUser').get('email')
+    };
+  };
+
+  SessionsHelper.sessionParamUrl = function() {
+    return JSON.stringify(SessionsHelper.sessionParam());
+  };
+
+  SessionsHelper.setAjaxHeader = function(options) {
+    var accessCode = options.accessCode;
+
+    $(document).ajaxSend(function(event, request, settings) {
+       if (accessCode) {
+          request.setRequestHeader("token", accessCode);
+       }
+    });
+  };
+
+  SessionsHelper.setCurrentUser = function(options) {
+    var currentUser = options.common.get('currentUser'),
+        url = 'http://localhost:3000/api/v0/users/'
+            + encodeURIComponent(currentUser.get('token').accessCode)
+            + '/current_user_via_access_code';
+
+    $.ajax({
+      type : 'GET',
+      url : url,
+      dataType : 'json',
+      success : function(data) {
+
+        // TODO: use pubsub for this
+        currentUser.set({
+          id: data.id,
+          username: data.username,
+          email: data.email
+        });
+      }
+    });
+  };
+
   return SessionsHelper;
+
 });

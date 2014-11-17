@@ -7,14 +7,16 @@ define([
   'templates',
   'userModel',
   'alertView',
-  'sessionsHelper'
+  'sessionsHelper',
+  'common'
 ], function ($,
              _,
              Backbone,
              JST,
              User,
              AlertView,
-             SessionsHelper) {
+             SessionsHelper,
+             Common) {
   'use strict';
 
   var PageRootSignUpView = Backbone.View.extend({
@@ -55,6 +57,7 @@ define([
                     + '?api_key=key&redirect_uri=%23/auth/callback',
           options = 'height=500,width=400',
           popUp = window.open(signUpUrl, 'Sign up using Supurl acount', options),
+          common = Common.getInstance(),
           message,
           accessCode,
           refreshCode,
@@ -68,7 +71,7 @@ define([
 
               if (accessCode && refreshCode) {
 
-                window.common.currentUser.set({
+                common.get('currentUser').set({
                   token: {
                     accessCode: accessCode,
                     refreshCode: refreshCode
@@ -76,7 +79,7 @@ define([
                 });
 
                 // Updates user info and cookie
-                window.common.currentUser.userInfoViaAccessCode();
+                common.get('currentUser').userInfoViaAccessCode();
 
                 // TODO: Need to refactor this.
                 // Include token header every ajax request sent

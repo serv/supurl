@@ -6,14 +6,18 @@ define([
   'backbone',
   'templates',
   'sessionsHelper',
-  'userModel'
+  'userModel',
+  'common'
 ], function ($,
              _,
              Backbone,
              JST,
              SessionsHelper,
-             User) {
+             User,
+             Common) {
   'use strict';
+
+  var common = Common.getInstance();
 
   var LayoutNavigationSearchBarView = Backbone.View.extend({
     template: JST['app/scripts/templates/layout_navigation_search_bar.ejs'],
@@ -31,11 +35,11 @@ define([
     },
 
     initialize: function () {
+
       if (SessionsHelper.isSignedIn()) {
         this.render();
       }
-
-      this.listenTo(window.common.currentUser, 'change', this.render);
+      this.listenTo(common.get('currentUser'), 'change', this.render);
     },
 
     render: function () {
