@@ -15,7 +15,7 @@ define([
     var common = Common.getInstance();
 
     return !_.isEmpty(common.get('currentUser'))
-        && !_.isEmpty(common.get('currentUser').get('token').accessToken);
+        && !_.isEmpty(common.get('currentUser').get('token').accessCode);
   };
 
   SessionsHelper.signOut = function() {
@@ -57,8 +57,8 @@ define([
     });
   };
 
-  SessionsHelper.setCurrentUser = function(options) {
-    var currentUser = options.common.get('currentUser'),
+  SessionsHelper.setCurrentUser = function() {
+    var currentUser = Common.getInstance().get('currentUser'),
         url = 'http://localhost:3000/api/v0/users/'
             + encodeURIComponent(currentUser.get('token').accessCode)
             + '/current_user_via_access_code';

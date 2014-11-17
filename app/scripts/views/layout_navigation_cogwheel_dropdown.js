@@ -44,7 +44,7 @@ define([
       var data = {};
       _.extend(data, SessionsHelper);
       this.$el.html(this.template(data));
-    },
+    }
   });
 
   return LayoutNavigationCogwheelDropdownView;

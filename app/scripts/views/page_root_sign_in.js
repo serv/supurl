@@ -82,8 +82,8 @@ define([
                 common.get('token')['refreshCode'] = refreshCode;
 
                 // Updates user info and cookie
-                SessionsHelper.setCurrentUser({common: common});
-                debugger;
+                SessionsHelper.setCurrentUser();
+
                 // TODO: Need to refactor this.
                 // Include token header every ajax request sent
                 SessionsHelper.setAjaxHeader({

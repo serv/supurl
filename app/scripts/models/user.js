@@ -24,7 +24,7 @@ define([
       password_confirmation: '',
       token: {
         // TODO: need expires_in
-        accessToken: '',
+        accessCode: '',
         refreshCode: ''
       }
     },
