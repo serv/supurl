@@ -1,4 +1,6 @@
-# supurl
+# Supurl
+
+Supurl is the web client for [Supurl API](https://github.com/serv/supurl-api).
 
 ## Getting Started
 
@@ -9,7 +11,3 @@
 5. In terminal, go into the repository directory.
 6. Run `bower install`
 7. Run `npm install`
-
-## backend
-
-## front end
